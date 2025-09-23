@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PRACTICA</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .endpoint {
+      background: #fce4ec;
+      border-left: 4px solid #c2185b;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    .footer {
+      text-align: right;
+      color: #888;
+      font-size: 1em;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 16px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PRACTICA</h1>
+    <hr>
+    <h2>Segundo Punto</h2>
+    <div class="note">
+      <b>Objetivo:</b> Cree una aplicación en Visual Studio 2022 (.NET 6/7 Web API) que consulte los datos de un cliente por su número de identificación desde una base de datos SQL Server 2019.
+    </div>
+    <h3>Requisitos</h3>
+    <ul>
+      <li><b>Base de Datos:</b> Crear la base de datos <code>DBClientes</code> en SQL Server 2019 con la tabla <code>Clientes</code>.</li>
+      <li><b>Procedimiento Almacenado:</b> Crear un SP para obtener los datos del cliente.</li>
+      <li><b>Estructura en Capas (Visual Studio 2022):</b>
+        <ul>
+          <li><b>API:</b> Controladores y endpoints</li>
+          <li><b>Services:</b> Lógica de negocio</li>
+          <li><b>Repositories:</b> Acceso a datos con Entity Framework Core</li>
+          <li><b>DTOs:</b> Objetos de transferencia de datos</li>
+        </ul>
+      </li>
+      <li><b>Swagger:</b> Documentar los endpoints con Swagger.</li>
+    </ul>
+    <div class="endpoint">
+      <b>Endpoint a Implementar:</b><br>
+      <code>GET /api/clientes/{identificación}</code><br>
+      <span>Debe devolver los datos del cliente si existe.</span>
+    </div>
+
+    <h2>Tercer Punto</h2>
+    <div class="note">
+      <b>PRUEBA PRÁCTICA – BACKEND:</b> Crear un servicio REST para consultar información básica de un cliente.
+    </div>
+    <h3>Condiciones del Servicio</h3>
+    <ul>
+      <li><b>Manejo de Códigos HTTP:</b>
+        <ul>
+          <li><code>200</code> OK</li>
+          <li><code>400</code> Bad Request</li>
+          <li><code>404</code> Not Found</li>
+          <li><code>500</code> Internal Server Error</li>
+        </ul>
+      </li>
+      <li><b>Entrada:</b>
+        <ul>
+          <li>Tipo de documento (<code>C</code> = Cédula de ciudadanía, <code>P</code> = Pasaporte)</li>
+          <li>Número de documento</li>
+          <li><b>Ambos obligatorios.</b></li>
+        </ul>
+      </li>
+      <li><b>Salida (mockeada, solo para cliente <code>23445322</code>):</b>
+        <ul>
+          <li>Primer nombre</li>
+          <li>Segundo nombre</li>
+          <li>Primer apellido</li>
+          <li>Segundo apellido</li>
+          <li>Teléfono</li>
+          <li>Dirección</li>
+          <li>Ciudad de residencia</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Tecnologías y Entregables</h3>
+    <ul>
+      <li><b>Spring &amp; Maven:</b> Uso obligatorio.</li>
+      <li><b>Puerto:</b> La aplicación debe iniciar en el puerto <code>8090</code>.</li>
+      <li><b>Entregables:</b>
+        <ul>
+          <li>JAR de la aplicación</li>
+          <li>Código fuente</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="important">
+      <b>Notas:</b>
+      <ul>
+        <li>Los datos de respuesta son mockeados (solo retornar para cliente <code>23445322</code>).</li>
+        <li>Valores agregados (no obligatorios): manejo de logs, pruebas unitarias y calidad de código.</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <b>¡Suerte en tu desarrollo!</b>
+    </div>
+  </div>
+</body>
+</html>
