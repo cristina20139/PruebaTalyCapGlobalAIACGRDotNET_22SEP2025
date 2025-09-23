@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 8 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 8 – Opción Múltiple</h1>
+    <div class="question">
+      <p>Si usted desea imprimir una línea nueva por consola en Java, ¿Qué comando ejecutaría?</p>
+      <ul>
+        <li>a) System.out.printf("Nueva línea");</li>
+        <li>b) System.out.print("Nueva línea");</li>
+        <li>c) System.out.println("Nueva línea");</li>
+        <li>d) Todas las anteriores</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>c) System.out.println("Nueva línea");</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, <code>System.out.println()</code> imprime el texto en consola y automáticamente agrega un salto de línea al final.  
+       <code>System.out.print()</code> imprime el texto pero no agrega salto de línea, y <code>System.out.printf()</code> es usado para formato de salida, pero tampoco agrega salto de línea automáticamente a menos que se incluya <code>\n</code> en el formato.  
+       Por lo tanto, la opción correcta para imprimir y pasar a la línea siguiente es <code>System.out.println()</code>.</p>
+
+    <div class="note">
+      Nota: Para <code>printf</code> se podría usar <code>System.out.printf("Nueva línea%n");</code> para obtener el mismo efecto de salto de línea.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Imprime sin salto de línea
+        System.out.print("Primera línea ");
+        System.out.print("continuación de la misma línea\n");
+
+        // Imprime con salto de línea automáticamente
+        System.out.println("Segunda línea con println");
+
+        // Usando printf con salto de línea
+        System.out.printf("Tercera línea con printf%n");
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

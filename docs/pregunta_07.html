@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 7 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 7 – Opción Múltiple</h1>
+    <div class="question">
+      <p>¿Para qué es usada la herencia en un lenguaje de P.O.O como Java?</p>
+      <ul>
+        <li>a) Permite la replicación de comportamientos y atributos de una clase padre sobre una clase hija</li>
+        <li>b) Permite la aplicación de polimorfismo en la definición del programa</li>
+        <li>c) Permite el uso de comportamientos y atributos en la clase hija</li>
+        <li>d) Todas las respuestas son correctas</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>d) Todas las respuestas son correctas</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, la herencia permite que una clase hija (subclase) reutilice atributos y métodos de una clase padre (superclase), evitando duplicación de código (opción a).  
+       También permite que la clase hija pueda sobrescribir o extender el comportamiento de la clase padre, facilitando el polimorfismo (opción b).  
+       Finalmente, la herencia habilita el uso directo de los métodos y atributos de la clase padre en la clase hija (opción c).  
+       Por lo tanto, todas las respuestas son correctas.</p>
+
+    <div class="note">
+      Nota: La herencia es uno de los pilares de la programación orientada a objetos y se combina frecuentemente con polimorfismo para crear código más flexible y reutilizable.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>class Vehiculo {
+    protected String marca;
+
+    public Vehiculo(String marca) {
+        this.marca = marca;
+    }
+
+    public void mostrarMarca() {
+        System.out.println("Marca: " + marca);
+    }
+}
+
+// Clase hija que hereda de Vehiculo
+class Auto extends Vehiculo {
+    private int puertas;
+
+    public Auto(String marca, int puertas) {
+        super(marca); // Uso del constructor de la clase padre
+        this.puertas = puertas;
+    }
+
+    // Sobrescritura de método (polimorfismo)
+    @Override
+    public void mostrarMarca() {
+        System.out.println("Auto de marca: " + marca + " con " + puertas + " puertas");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehiculo v = new Vehiculo("Genérico");
+        v.mostrarMarca();
+
+        Auto miAuto = new Auto("Toyota", 4);
+        miAuto.mostrarMarca(); // Método sobrescrito
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

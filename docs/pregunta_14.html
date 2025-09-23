@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 14 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 14 – Opción Múltiple</h1>
+    <div class="question">
+      <p>En Java, la mejor alternativa para ejecutar una consulta de actualización, inserción y/o eliminación de datos sobre una base de datos es:</p>
+      <ul>
+        <li>a) .execute();</li>
+        <li>b) .executeUpdate();</li>
+        <li>c) .execute(-consulta-);</li>
+        <li>d) Todas las anteriores</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>b) .executeUpdate();</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, al usar JDBC para interactuar con una base de datos:  
+       <ul>
+        <li><code>executeUpdate()</code> se utiliza para ejecutar sentencias SQL que modifican datos (INSERT, UPDATE, DELETE) y retorna el número de filas afectadas.</li>
+        <li><code>execute()</code> puede ejecutar cualquier tipo de sentencia SQL, pero su uso es más general y requiere manejo adicional para saber si devuelve un <code>ResultSet</code> o un conteo de filas.</li>
+        <li>La opción <code>c)</code> es incorrecta porque <code>execute(-consulta-)</code> no es una sintaxis válida.</li>
+       </ul>
+       Por lo tanto, la opción más adecuada para actualizar, insertar o eliminar registros es <code>executeUpdate()</code>.</p>
+
+    <div class="note">
+      Nota: Para consultas SELECT se recomienda usar <code>executeQuery()</code>, que retorna un <code>ResultSet</code>.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class Main {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/miBase";
+        String usuario = "root";
+        String password = "1234";
+
+        try (Connection con = DriverManager.getConnection(url, usuario, password)) {
+            // Consulta de inserción
+            String sql = "INSERT INTO empleados (nombre, edad) VALUES (?, ?)";
+            try (PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setString(1, "Manuela");
+                stmt.setInt(2, 30);
+
+                int filasAfectadas = stmt.executeUpdate();
+                System.out.println("Filas insertadas: " + filasAfectadas);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

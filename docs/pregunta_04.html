@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 4 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 4 – Opción Múltiple</h1>
+    <div class="question">
+      <p>¿Qué diferencia existe entre una matriz de datos y un vector de datos?</p>
+      <ul>
+        <li>a) La matriz permite cambios en su dimensión, algo que no ocurre con el vector</li>
+        <li>b) La matriz no permite ningún cambio en sus estructuras de datos, el vector permite cambio solamente en sus estructuras de datos iniciales</li>
+        <li>c) La matriz en la mayoría de los casos relaciona filas y columnas, mientras que el vector relaciona solamente filas</li>
+        <li>d) Todas las respuestas son correctas</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>c) La matriz en la mayoría de los casos relaciona filas y columnas, mientras que el vector relaciona solamente filas</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java y otros lenguajes de programación, un <code>vector</code> (o un array unidimensional) representa una secuencia de elementos lineales, mientras que una <code>matriz</code> (array bidimensional) organiza datos en filas y columnas.  
+       La opción <code>a)</code> es incorrecta porque tanto matrices como vectores en Java tienen tamaño fijo una vez creados.  
+       La opción <code>b)</code> es confusa, ya que el vector tampoco cambia su tamaño automáticamente (a menos que usemos <code>ArrayList</code>).  
+       Por ello, la diferencia principal y correcta es la de la opción <code>c)</code>.</p>
+
+    <div class="note">
+      Nota: Para manejar cambios de tamaño dinámico se recomienda usar <code>ArrayList</code> en lugar de arrays fijos.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Vector (array unidimensional)
+        int[] vector = {1, 2, 3, 4, 5};
+        System.out.println("Vector:");
+        for(int v : vector){
+            System.out.println(v);
+        }
+
+        // Matriz (array bidimensional)
+        int[][] matriz = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        System.out.println("\nMatriz:");
+        for(int i = 0; i < matriz.length; i++){
+            for(int j = 0; j < matriz[i].length; j++){
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

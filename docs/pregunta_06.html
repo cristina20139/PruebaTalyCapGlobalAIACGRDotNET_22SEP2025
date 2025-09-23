@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 6 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 6 – Opción Múltiple</h1>
+    <div class="question">
+      <p>Es una instrucción de Java aplicada sobre cadenas que recibe un carácter como argumento y retorna la posición del carácter si existe en la cadena; retorna -1 en otros casos:</p>
+      <ul>
+        <li>a) indexOf(-argumento-)</li>
+        <li>b) trim(-argumento-)</li>
+        <li>c) contains(-argumento-)</li>
+        <li>d) Todas las respuestas son correctas</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>a) indexOf(-argumento-)</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, el método <code>indexOf()</code> se aplica sobre un <code>String</code> y retorna la posición de la primera aparición de un carácter o subcadena dentro de la cadena.  
+       Si el carácter o subcadena no se encuentra, retorna -1.  
+       La opción <code>b) trim()</code> elimina espacios en blanco al inicio y al final de la cadena, y <code>c) contains()</code> retorna un valor booleano indicando si la subcadena existe, pero no su posición.  
+       Por lo tanto, la opción correcta es <code>a)</code>.</p>
+
+    <div class="note">
+      Nota: <code>indexOf()</code> es muy útil para localizar caracteres o subcadenas dentro de un <code>String</code>.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        String texto = "Hola Mundo";
+
+        // indexOf devuelve la posición del carácter
+        int pos = texto.indexOf('M'); // retorna 5
+        System.out.println("Posición de 'M': " + pos);
+
+        // indexOf de un carácter que no existe
+        int posNoExiste = texto.indexOf('z'); // retorna -1
+        System.out.println("Posición de 'z': " + posNoExiste);
+
+        // trim elimina espacios en los extremos
+        String conEspacios = "   Hola   ";
+        System.out.println("Trim: '" + conEspacios.trim() + "'");
+
+        // contains retorna boolean
+        boolean tieneMundo = texto.contains("Mundo");
+        System.out.println("Contiene 'Mundo': " + tieneMundo);
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

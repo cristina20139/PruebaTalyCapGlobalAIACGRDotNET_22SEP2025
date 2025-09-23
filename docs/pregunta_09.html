@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 9 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 9 – Opción Múltiple</h1>
+    <div class="question">
+      <p>La declaración de importación de clases ajenas en Java va denotada por la línea “import – ruta del paquete - - nombre de la clase –“. Con base a ello, si se desea utilizar todas las clases del paquete <code>java.util</code>, ¿la sintaxis correcta para importar el paquete es?</p>
+      <ul>
+        <li>a) import java.utils.*;</li>
+        <li>b) mport java.util.*;</li>
+        <li>c) import java.util.*;</li>
+        <li>d) Ninguna de las respuestas es correcta</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>c) import java.util.*;</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, la palabra clave <code>import</code> seguida de la ruta del paquete y un asterisco <code>*</code> permite importar todas las clases contenidas en ese paquete.  
+       La opción <code>a)</code> es incorrecta porque el paquete correcto es <code>java.util</code>, no <code>java.utils</code>.  
+       La opción <code>b)</code> es incorrecta debido a un error de sintaxis: falta la letra <code>i</code> al inicio de <code>import</code>.  
+       Por lo tanto, la opción correcta es <code>c)</code>.</p>
+
+    <div class="note">
+      Nota: Importar un paquete con <code>*</code> no importa subpaquetes; solo las clases que se encuentran directamente dentro del paquete especificado.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // Usando ArrayList del paquete java.util
+        List<String> lista = new ArrayList<>();
+        lista.add("Manuela");
+        lista.add("Carlos");
+        lista.add("Ana");
+
+        for(String nombre : lista) {
+            System.out.println("Nombre: " + nombre);
+        }
+
+        // Usando HashMap del mismo paquete
+        Map<String, Integer> edades = new HashMap<>();
+        edades.put("Manuela", 30);
+        edades.put("Carlos", 35);
+
+        System.out.println("Edades: " + edades);
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 19 – Exception vs NullPointerException</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 19 – Exception vs NullPointerException</h1>
+    <div class="question">
+      <p>¿Qué diferencia existe al controlar una excepción de tipo <code>Exception</code> y una excepción <code>NullPointerException</code> en Java?</p>
+    </div>
+
+    <h2>Respuesta:</h2>
+    <p>
+      - <strong>Exception:</strong> Es la clase base para la mayoría de excepciones comprobadas en Java. Capturar <code>Exception</code> permite manejar cualquier excepción derivada, pero puede ocultar errores específicos.  
+      - <strong>NullPointerException (NPE):</strong> Es una excepción no comprobada que ocurre cuando se intenta usar un objeto que tiene valor <code>null</code>. Capturar específicamente NPE permite manejar casos donde se accede a referencias nulas sin afectar otras excepciones.
+    </p>
+
+    <h2>Ejemplo en Java:</h2>
+    <h3>1. Controlando Exception</h3>
+    <pre><code>public class EjemploException {
+    public static void main(String[] args) {
+        try {
+            String texto = null;
+            System.out.println(texto.length()); // Lanza NullPointerException
+        } catch (Exception e) {
+            System.out.println("Se capturó una excepción: " + e.getClass().getSimpleName());
+        }
+    }
+}</code></pre>
+
+    <h3>2. Controlando NullPointerException</h3>
+    <pre><code>public class EjemploNPE {
+    public static void main(String[] args) {
+        try {
+            String texto = null;
+            System.out.println(texto.length()); // Lanza NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Se capturó un NullPointerException específicamente.");
+        }
+    }
+}</code></pre>
+
+    <div class="note">
+      Nota: Capturar <code>Exception</code> es más general y puede ocultar otros errores, mientras que capturar <code>NullPointerException</code> permite un manejo más preciso de referencias nulas.
+    </div>
+  </div>
+</body>
+</html>

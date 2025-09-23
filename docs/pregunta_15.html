@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 15 – Patrones de Diseño</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 15 – Patrones de Diseño</h1>
+    <div class="question">
+      <p>¿Conoce patrones de diseño? De ser así, mencione dos patrones de diseño y demuestre un pequeño ejemplo. Además, mencione al menos 15 patrones genéricos y luego patrones REST categorizados.</p>
+    </div>
+
+    <h2>Respuesta:</h2>
+    <p>Un <strong>patrón de diseño</strong> es una solución reutilizable y probada a un problema común en el diseño de software. Facilita la mantenibilidad, escalabilidad y comprensión del código.</p>
+
+    <h3>15 Patrones Genéricos de P.O.O:</h3>
+    <ul>
+      <li>1. Singleton – Garantiza una única instancia de una clase.</li>
+      <li>2. Factory Method – Crea objetos sin exponer la lógica de creación.</li>
+      <li>3. Abstract Factory – Crea familias de objetos relacionados.</li>
+      <li>4. Builder – Construye objetos complejos paso a paso.</li>
+      <li>5. Prototype – Crea nuevos objetos clonando un prototipo.</li>
+      <li>6. Adapter – Convierte la interfaz de una clase en otra interfaz esperada.</li>
+      <li>7. Decorator – Agrega responsabilidades adicionales a un objeto dinámicamente.</li>
+      <li>8. Proxy – Controla el acceso a un objeto.</li>
+      <li>9. Facade – Proporciona una interfaz simplificada a un subsistema.</li>
+      <li>10. Observer – Permite notificar cambios a múltiples dependientes.</li>
+      <li>11. Strategy – Permite cambiar el comportamiento de un algoritmo en tiempo de ejecución.</li>
+      <li>12. Command – Encapsula una solicitud como objeto, permitiendo operaciones parametrizadas.</li>
+      <li>13. Iterator – Permite recorrer elementos de una colección sin exponer su estructura interna.</li>
+      <li>14. Composite – Permite tratar objetos individuales y compuestos de manera uniforme.</li>
+      <li>15. State – Permite que un objeto cambie su comportamiento cuando cambia su estado interno.</li>
+    </ul>
+
+    <h3>Patrones REST/API categorizados:</h3>
+    <ul>
+      <li><strong>Patrones de URI:</strong> Resource Naming, Versioning, Filtering.</li>
+      <li><strong>Patrones de Comportamiento:</strong> HATEOAS, Caching, Pagination.</li>
+      <li><strong>Patrones de Respuesta:</strong> Error Handling, Standard Response Wrappers, Rate Limiting.</li>
+      <li><strong>Patrones de Seguridad:</strong> OAuth2, JWT Authentication, Throttling.</li>
+      <li><strong>Patrones de Integración:</strong> API Gateway, Circuit Breaker, Retry Pattern.</li>
+    </ul>
+
+    <h3>Ejemplo práctico de dos patrones:</h3>
+    <h4>1. Singleton (Creacional)</h4>
+    <pre><code>public class ConexionDB {
+    private static ConexionDB instancia;
+
+    private ConexionDB() {
+        System.out.println("Conexión creada");
+    }
+
+    public static ConexionDB getInstancia() {
+        if (instancia == null) {
+            instancia = new ConexionDB();
+
+        }
+        return instancia;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ConexionDB c1 = ConexionDB.getInstancia();
+        ConexionDB c2 = ConexionDB.getInstancia();
+        System.out.println(c1 == c2); // true, misma instancia
+    }
+}</code></pre>
+
+    <h4>2. Adapter (Estructural)</h4>
+    <pre><code>// Clase existente
+class LectorCSV {
+    public void leerCSV() {
+        System.out.println("Leyendo CSV...");
+    }
+}
+
+// Interfaz esperada
+interface Lector {
+    void leer();
+}
+
+// Adapter
+class LectorCSVAdapter implements Lector {
+    private LectorCSV lectorCSV;
+
+    public LectorCSVAdapter(LectorCSV lectorCSV) {
+        this.lectorCSV = lectorCSV;
+    }
+
+    @Override
+    public void leer() {
+        lectorCSV.leerCSV(); // Adaptando método
+    }
+}
+
+public class MainAdapter {
+    public static void main(String[] args) {
+        Lector lector = new LectorCSVAdapter(new LectorCSV());
+        lector.leer(); // Funciona usando la interfaz Lector
+    }
+}</code></pre>
+
+    <div class="note">
+      Nota: Los patrones de diseño ayudan a construir software escalable, mantenible y consistente, y su aplicación en REST/API permite una arquitectura robusta y reutilizable.
+    </div>
+  </div>
+</body>
+</html>

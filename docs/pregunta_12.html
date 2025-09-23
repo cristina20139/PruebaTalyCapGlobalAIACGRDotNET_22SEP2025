@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 12 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 12 – Opción Múltiple</h1>
+    <div class="question">
+      <p>En Java, es la instrucción usada para obtener el tamaño de una lista de datos:</p>
+      <ul>
+        <li>a) .length();</li>
+        <li>b) .size();</li>
+        <li>c) .iterator();</li>
+        <li>d) Ninguna de las respuestas es correcta</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>b) .size();</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, las listas que implementan la interfaz <code>List</code> (como <code>ArrayList</code> o <code>LinkedList</code>) utilizan el método <code>size()</code> para obtener la cantidad de elementos almacenados.  
+       La opción <code>a) .length()</code> es propia de arreglos (<code>array.length</code> no lleva paréntesis).  
+       La opción <code>c) .iterator()</code> devuelve un iterador para recorrer la lista, pero no su tamaño.  
+       Por lo tanto, la forma correcta de obtener el tamaño de una lista es <code>.size()</code>.</p>
+
+    <div class="note">
+      Nota: <code>size()</code> es un método de la interfaz <code>Collection</code>, y está disponible para todas las estructuras de datos que la implementan.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> nombres = new ArrayList<>();
+        nombres.add("Manuela");
+        nombres.add("Carlos");
+        nombres.add("Ana");
+
+        // Obtener tamaño de la lista
+        int tamaño = nombres.size();
+        System.out.println("Tamaño de la lista: " + tamaño); // Salida: 3
+
+        // Recorrer lista
+        for(String nombre : nombres) {
+            System.out.println("Nombre: " + nombre);
+        }
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

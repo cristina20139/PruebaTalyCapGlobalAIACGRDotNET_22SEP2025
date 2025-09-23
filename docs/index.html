@@ -1,17 +1,99 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Servicio REST - Java Spring Boot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
 </head>
-
 <body>
-<p> Prueba Tecnica Aura Garzon</p>
-<ul>
-  <li>Prueba Teorica Backend&nbsp;</li>
-  <li>Prueba Practica</li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+  <div class="container">
+    <h1>Proyecto Servicio REST - Java Spring Boot</h1>
+
+    <div class="note">
+      <strong>Autor:</strong> <a href="https://www.linkedin.com/in/aura-cristina-garz%C3%B3n-rodr%C3%ADguez-9520b734/" target="_blank">Aura Cristina Garzón Rodríguez
+    </a></div>
+
+    <h2><a href="definicion_prueba_teorica.html" target="_blank">RESPUESTAS PRUEBA TEORICA</a> / <a href="definicion_prueba_practica.html" target="_blank">ENUNCIADO PROBLEMA PRACTICO</a> / <a href="https://github.com/cristina20139/PruebaTalyCapGlobalAIACGRDotNET_22SEP2025" target="_blank">ENLACE GITHUB CODIGO FUENTE SOLUCION PROBLEMA PRACTICO</a></h2>
+    <h2>Introducción</h2>
+    <p>
+      Este proyecto consiste en la creación de servicios REST para la consulta de información de clientes,
+      desarrollado como parte de una prueba práctica de backend. La aplicación se implementa utilizando
+      <strong>Java Spring Boot</strong> con <strong>Maven</strong> y se conecta a una base de datos 
+      <strong>MS SQL Server 2019</strong>, integrando buenas prácticas de arquitectura en capas y
+      documentación de endpoints mediante <strong>Swagger</strong>.
+    </p>
+
+    <h2>Objetivo</h2>
+    <p>
+      Permitir la consulta de datos de clientes por su número de identificación, asegurando respuestas 
+      adecuadas mediante códigos HTTP estándar:
+    </p>
+    <ul>
+      <li><code>200 OK</code></li>
+      <li><code>400 Bad Request</code></li>
+      <li><code>404 Not Found</code></li>
+      <li><code>500 Internal Server Error</code></li>
+    </ul>
+
+    <h2>Características principales</h2>
+    <ul>
+      <li><strong>Base de Datos MS SQL Server 2019:</strong> Tabla <code>Clientes</code> y procedimientos almacenados para obtener información.</li>
+      <li><strong>Arquitectura en Capas:</strong> Separación de responsabilidades en <code>Controllers</code>, <code>Services</code>, <code>Repositories</code> y <code>DTOs</code>.</li>
+      <li><strong>Servicio Mockeado:</strong> Retorna información únicamente para el cliente con número de documento <code>23445322</code>.</li>
+      <li><strong>Swagger:</strong> Documentación y prueba de endpoints de forma interactiva.</li>
+      <li><strong>Entrega:</strong> Código fuente completo <a href="https://github.com/cristina20139/PruebaTalyCapGlobalAIACGRDotNET_22SEP2025" target="_blank">https://github.com/cristina20139/PruebaTalyCapGlobalAIACGRDotNET_22SEP2025</a>.</li>
+    </ul>
+
+    <h2>Notas adicionales</h2>
+    <div class="important">
+      Se consideraron buenas prácticas de desarrollo backend, incluyendo manejo de errores, arquitectura modular y calidad de código. Se sugiere la incorporación de logs y pruebas unitarias como valores agregados.
+    </div>
+
+  </div>
 </body>
 </html>

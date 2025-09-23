@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 20 – Factorial</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 20 – Factorial de un número</h1>
+    <div class="question">
+      <p>
+        A continuación se presentan dos problemas de aplicación. Seleccione uno y aporte una solución precisa.      </p>
+      <p>He elegido la opción <strong>b)</strong>: </p>
+      <ul>
+        <li>a) Ordenar un arreglo de datos {2, 4, 5, 1, 6, 3, 9, 7, 8, 0} en orden ascendente.</li>
+        <li>b) Calcular el factorial de un número positivo n.</li>
+      </ul>
+    </div>
+
+    <h2>Nota:</h2>
+    <p>No se permite la implementación de métodos propios de Java para el ordenamiento (ej.: <code>Arrays.sort()</code>). Se permite el uso de recursos tecnológicos solamente para consulta de conceptos.</p>
+
+    <h2>Solución – Cálculo de factorial:</h2>
+    <p>Se puede implementar de manera iterativa o recursiva. A continuación se presenta un ejemplo iterativo:</p>
+
+    <pre><code>import java.util.Scanner;
+
+public class Factorial {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese un número positivo: ");
+        int n = sc.nextInt();
+        
+        if (n < 0) {
+            System.out.println("Número inválido. Debe ser positivo.");
+        } else {
+            long factorial = 1;
+            for (int i = 1; i <= n; i++) {
+                factorial *= i;
+            }
+            System.out.println("El factorial de " + n + " es: " + factorial);
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+
+    <h3>Explicación:</h3>
+    <ul>
+      <li>Se solicita al usuario un número positivo <code>n</code>.</li>
+      <li>Se valida que <code>n</code> sea positivo.</li>
+      <li>Se calcula el factorial mediante un bucle <code>for</code> multiplicando desde 1 hasta n.</li>
+      <li>Se imprime el resultado.</li>
+    </ul>
+
+    <div class="note">
+      Nota: Este algoritmo evita el uso de métodos complejos de librerías y cumple la condición de ser un programa sencillo y preciso en Java.
+    </div>
+  </div>
+</body>
+</html>

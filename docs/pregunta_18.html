@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 18 – Primitiva vs Wrapper</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 18 – Variable Primitiva vs Wrapper</h1>
+    <div class="question">
+      <p>¿Qué diferencia hay entre una variable de datos primitiva y una variable de datos envolvente (wrapper) en Java?</p>
+    </div>
+
+    <h2>Respuesta:</h2>
+    <p>
+      - <strong>Variable primitiva:</strong> Es un tipo de dato básico incorporado en Java (int, boolean, double, char, etc.). Ocupa menos memoria, tiene acceso rápido y no es un objeto.  
+      - <strong>Variable envolvente (wrapper):</strong> Es una clase que encapsula un valor primitivo en un objeto (Integer, Boolean, Double, Character, etc.). Permite usar métodos, trabajar con colecciones y soporta null.
+    </p>
+
+    <h2>Ejemplo en Java:</h2>
+    <h3>1. Variable primitiva</h3>
+    <pre><code>int numero = 10;
+double valor = 5.5;
+boolean esActivo = true;
+System.out.println("Número: " + numero + ", Valor: " + valor + ", Activo: " + esActivo);</code></pre>
+
+    <h3>2. Variable wrapper</h3>
+    <pre><code>Integer numeroObj = Integer.valueOf(10);
+Double valorObj = Double.valueOf(5.5);
+Boolean esActivoObj = Boolean.TRUE;
+
+// Permite usar métodos de la clase
+System.out.println("Número doble: " + numeroObj.doubleValue());
+System.out.println("Valor como String: " + valorObj.toString());
+System.out.println("Activo: " + esActivoObj);</code></pre>
+
+    <div class="note">
+      Nota: Las variables wrapper son útiles cuando se trabaja con colecciones genéricas, ya que estas solo pueden contener objetos, no tipos primitivos.
+    </div>
+  </div>
+</body>
+</html>

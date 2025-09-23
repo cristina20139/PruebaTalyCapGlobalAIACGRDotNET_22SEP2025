@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 11 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 11 – Opción Múltiple</h1>
+    <div class="question">
+      <p>En Java, ¿Qué diferencia hay entre una interfaz y una clase abstracta?</p>
+      <ul>
+        <li>a) La interfaz se implementa en una clase, mientras que la clase abstracta se hereda en una clase</li>
+        <li>b) La clase abstracta requiere por lo menos un método abstracto, mientras que la interfaz no requiere métodos abstractos</li>
+        <li>c) Ambos conceptos son recíprocos</li>
+        <li>d) Todas las respuestas son correctas</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>a) La interfaz se implementa en una clase, mientras que la clase abstracta se hereda en una clase</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, una <strong>interfaz</strong> define un contrato que una clase debe implementar mediante la palabra clave <code>implements</code>.  
+       Una <strong>clase abstracta</strong> puede contener métodos abstractos y métodos con implementación, y se hereda usando <code>extends</code>.  
+       La opción b) es incorrecta porque una clase abstracta <em>no requiere</em> necesariamente un método abstracto; puede tener solo métodos concretos.  
+       La opción c) es incorrecta ya que interfaz y clase abstracta no son recíprocos, sino conceptos distintos. Por eso, la opción correcta es <code>a)</code>.</p>
+
+    <div class="note">
+      Nota: Las interfaces permiten múltiples implementaciones, mientras que una clase solo puede extender una clase abstracta.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>// Interfaz
+interface Conducible {
+    void conducir();
+}
+
+// Clase abstracta
+abstract class Vehiculo {
+    protected String marca;
+
+    public Vehiculo(String marca) {
+        this.marca = marca;
+    }
+
+    // Método concreto
+    public void mostrarMarca() {
+        System.out.println("Marca: " + marca);
+    }
+
+    // Método abstracto
+    public abstract void tipoVehiculo();
+}
+
+// Clase que implementa la interfaz y hereda la clase abstracta
+class Auto extends Vehiculo implements Conducible {
+    public Auto(String marca) {
+        super(marca);
+    }
+
+    @Override
+    public void tipoVehiculo() {
+        System.out.println("Tipo: Auto");
+    }
+
+    @Override
+    public void conducir() {
+        System.out.println("Conduciendo el auto...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Auto miAuto = new Auto("Toyota");
+        miAuto.mostrarMarca();
+        miAuto.tipoVehiculo();
+        miAuto.conducir();
+    }
+}</code></pre>
+  </div>
+</body>
+</html>

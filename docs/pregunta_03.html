@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 3 – Opción Múltiple</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 3 – Opción Múltiple</h1>
+    <div class="question">
+      <p>La declaración de una lista de datos va denotada por la sintaxis:</p>
+      <ul>
+        <li>a) List&lt;String&gt; lista = new List&lt;String&gt;();</li>
+        <li>b) List&lt;String&gt; lista = new ArrayList&lt;String&gt;();</li>
+        <li>c) List lista = new ArrayList();</li>
+        <li>d) Todas las respuestas son correctas</li>
+      </ul>
+    </div>
+
+    <h2>Respuesta Correcta:</h2>
+    <p><strong>b) List&lt;String&gt; lista = new ArrayList&lt;String&gt;();</strong></p>
+
+    <h2>Justificación:</h2>
+    <p>En Java, <code>List</code> es una interfaz y no se puede instanciar directamente, por lo que la opción <code>a)</code> es incorrecta.  
+       La forma correcta de declarar e instanciar una lista de Strings es usando una clase que implemente la interfaz <code>List</code>, como <code>ArrayList</code>.  
+       La opción <code>c)</code> es válida sintácticamente pero no usa generics, lo que reduce la seguridad de tipo y no es recomendable.  
+       Por eso, la opción más correcta y segura es la <code>b)</code>.</p>
+
+    <div class="note">
+      Nota: Usar generics permite que la lista solo contenga elementos del tipo especificado y evita errores de casting en tiempo de ejecución.
+    </div>
+
+    <h2>Ejemplo en Java:</h2>
+    <pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Declaración correcta usando List e ArrayList con generics
+        List&lt;String&gt; lista = new ArrayList&lt;&gt;();
+        lista.add("Manuela");
+        lista.add("Carlos");
+        lista.add("Ana");
+
+        for(String nombre : lista){
+            System.out.println("Nombre: " + nombre);
+        }
+
+        // Declaración sin generics (opción c)
+        List listaSinTipo = new ArrayList();
+        listaSinTipo.add("Texto");
+        listaSinTipo.add(123); // Esto es posible pero menos seguro
+        System.out.println("Lista sin generics: " + listaSinTipo);
+    }
+}</code></pre>
+  </div>
+</body>
+</html>
