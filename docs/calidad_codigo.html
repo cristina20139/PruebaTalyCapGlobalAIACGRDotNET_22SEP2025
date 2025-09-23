@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demostración Clean Code</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre {
+      background: #f3f3f7;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #222;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .important {
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+    }
+    .example {
+      background: #fce4ec;
+      border-left: 4px solid #c2185b;
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    .footer {
+      text-align: right;
+      color: #888;
+      font-size: 1em;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 16px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Demostración de Clean Code en Proyecto</h1>
+
+    <h2>1. Nombrado claro y consistente</h2>
+    <ul>
+      <li>Variables, métodos y clases descriptivos y autoexplicativos.</li>
+      <li>Ejemplo de código:</li>
+      <div class="example">
+        // Malo<br>
+        int x;<br><br>
+        // Bueno<br>
+        int numeroDeClientesActivos;
+      </div>
+      <li>Clases en el proyecto: <code>ClienteService</code>, <code>ClienteController</code>, <code>ClienteRepositoryImpl</code>.</li>
+    </ul>
+
+    <h2>2. Funciones cortas y con un solo propósito</h2>
+    <div class="example">
+      // Malo<br>
+      public void procesarCliente(...) { validarDatos(...); guardarCliente(...); enviarNotificacion(...); }<br><br>
+      // Bueno<br>
+      public void procesarCliente(...) { validarDatos(...); guardarCliente(...); notificarCliente(...); }
+    </div>
+    <p>Ejemplo real: <code>ClienteService</code> solo maneja lógica de negocio, <code>ClienteController</code> solo maneja la API.</p>
+
+    <h2>3. Eliminación de código duplicado</h2>
+    <p>Se reutilizan métodos comunes, por ejemplo:</p>
+    <div class="example">
+      validarDocumento(String tipo, long numero);
+    </div>
+
+    <h2>4. Manejo consistente de excepciones y HTTP</h2>
+    <p>Se implementó <code>GlobalExceptionHandler</code> para centralizar 400, 404 y 500.</p>
+
+    <h2>5. Logging estructurado</h2>
+    <div class="example">
+      logger.info("Cliente encontrado: {}", cliente);<br>
+      logger.warn("Cliente no encontrado: {}", tipoDocumento);<br>
+      logger.error("Error inesperado", ex);
+    </div>
+
+    <h2>6. Inyección de dependencias y bajo acoplamiento</h2>
+    <div class="example">
+      public ClienteService(ClienteRepository clienteRepository) { this.clienteRepository = clienteRepository; }
+    </div>
+
+    <h2>7. Testing automatizado</h2>
+    <ul>
+      <li>Pruebas unitarias con Mockito y de integración con MockMvc.</li>
+      <li>Se prueban <code>ClienteService</code> y <code>ClienteController</code>.</li>
+    </ul>
+
+    <h2>8. Documentación mínima y legible</h2>
+    <p>Comentarios explicativos solo donde la intención del código no es evidente.</p>
+
+    <h2>9. Estilo consistente y constantes</h2>
+    <div class="example">
+      private static final String MSG_NO_ENCONTRADO = "Cliente no encontrado";
+    </div>
+
+    <h2>10. Separación de responsabilidades por capas</h2>
+    <ul>
+      <li><b>Controller</b> → API y HTTP</li>
+      <li><b>Service</b> → lógica de negocio</li>
+      <li><b>Repository</b> → acceso a datos</li>
+      <li><b>Domain</b> → modelos de negocio</li>
+    </ul>
+
+    <div class="important">
+      <b>Evidencia para presentar:</b>
+      <ul>
+        <li>Fragmentos de código bien nombrados y documentados.</li>
+        <li>Commits que muestran refactorización y limpieza de código.</li>
+        <li>Tests unitarios y de integración aplicados correctamente.</li>
+        <li>Manejo consistente de logs y excepciones.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <b>¡Suerte en tu presentación!</b>
+    </div>
+  </div>
+</body>
+</html>
