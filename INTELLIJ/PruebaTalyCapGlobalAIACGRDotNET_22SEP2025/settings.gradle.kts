@@ -1,0 +1,1 @@
+rootProject.name = "PruebaTalyCapGlobalAIACGRDotNET_22SEP2025"
