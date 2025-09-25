@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación - ClientesApp</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 ClientesApp</h1>
+    <p><strong>Paquete:</strong> <code>com.clinicos.backend</code></p>
+
+    <div class="note">
+      <p>🔹 <strong>Descripción:</strong><br>
+      Clase principal de la aplicación Spring Boot para la <strong>gestión de clientes</strong>.<br>
+      Representa el punto de entrada de la aplicación e inicializa datos de prueba mediante <code>ClienteGenerator</code>.  
+      Integra principios de <b>Clean Code</b> y <b>SOLID</b>, además de trazabilidad con <code>SLF4J</code>.</p>
+    </div>
+
+    <h2>✨ Principios aplicados</h2>
+    <ul>
+      <li>📌 <strong>SRP (Single Responsibility):</strong> Responsabilidad única: iniciar la aplicación y definir el bean de seed.</li>
+      <li>📌 <strong>DIP (Dependency Inversion):</strong> Depende de la abstracción <code>ClienteGenerator</code> en lugar de implementaciones concretas.</li>
+    </ul>
+
+    <h2>👩‍💻 Autor</h2>
+    <p><strong>Aura Cristina Garzón Rodríguez</strong> — <em>23 Sep 2025</em></p>
+
+    <h2>🛠️ Métodos documentados</h2>
+
+    <h3>🔹 main</h3>
+    <div class="important">
+      <p>Método principal para iniciar la aplicación.</p>
+      <ul>
+        <li>🔸 Parámetro: <code>String[] args</code> (argumentos de línea de comandos).</li>
+        <li>🔸 Inicia <code>SpringApplication.run</code>.</li>
+        <li>🔸 Log de arranque: <code>"🚀 ClientesApp iniciado correctamente"</code>.</li>
+      </ul>
+    </div>
+
+    <h3>🔹 seedDatabase</h3>
+    <div class="important">
+      <p>Bean <code>CommandLineRunner</code> que inicializa datos de prueba.</p>
+      <ul>
+        <li>🔸 Parámetros:
+          <ul>
+            <li><code>ClienteGenerator generator</code> → Generador de clientes.</li>
+            <li><code>@Value clientes.seed.enabled</code> → Activa/desactiva generación.</li>
+            <li><code>@Value clientes.seed.cantidad</code> → Número de clientes a generar.</li>
+          </ul>
+        </li>
+        <li>🔸 Logs:
+          <ul>
+            <li>⚡ Inicio de generación.</li>
+            <li>✅ Éxito de generación.</li>
+            <li>💥 Error en generación (propagado a Spring).</li>
+          </ul>
+        </li>
+        <li>🔸 Retorno: <code>CommandLineRunner</code>.</li>
+      </ul>
+    </div>
+
+    <h2>💻 Código Fuente</h2>
+    <pre><code>
+@SpringBootApplication
+public class ClientesApp {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClientesApp.class);
+
+    public static void main(String[] args) {
+        SpringApplication.run(ClientesApp.class, args);
+        logger.info("🚀 ClientesApp iniciado correctamente");
+    }
+
+    @Bean
+    CommandLineRunner seedDatabase(
+            ClienteGenerator generator,
+            @Value("${clientes.seed.enabled:false}") boolean seedEnabled,
+            @Value("${clientes.seed.cantidad:1000}") int cantidad
+    ) {
+
+        return args -> {
+            if (seedEnabled) {
+                logger.info("⚡ Generación de {} clientes iniciada por configuración", cantidad);
+                try {
+                    generator.generarClientes();
+                    logger.info("✅ Generación de clientes completada exitosamente");
+                } catch (Exception e) {
+                    logger.error("💥 Error al generar clientes", e);
+                    throw e;
+                }
+            } else {
+                logger.info("⚡ Generación de clientes deshabilitada por configuración");
+            }
+        };
+    }
+}
+    </code></pre>
+
+    <div class="footer">📘 Documentación generada automáticamente</div>
+  </div>
+</body>
+</html>

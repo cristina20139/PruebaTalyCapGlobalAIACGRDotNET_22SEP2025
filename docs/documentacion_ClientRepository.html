@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación de la interfaz ClienteRepository</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Documentación de la interfaz <code>ClienteRepository</code></h1>
+
+    <h2>📌 Rol en la Arquitectura Hexagonal</h2>
+    <p>
+      La interfaz <code>ClienteRepository</code> actúa como un <b>puerto de persistencia</b>.  
+      👉 Define las operaciones que la capa de dominio espera, sin importar cómo se implementen.
+    </p>
+    <ul>
+      <li>🔌 <b>Puerto:</b> separa la lógica de negocio de la infraestructura.</li>
+      <li>🗄️ <b>Adaptadores:</b> pueden implementarse con JDBC, JPA, MongoDB, APIs externas, etc.</li>
+      <li>🔄 <b>Independencia:</b> el servicio de aplicación depende solo de esta interfaz, nunca de detalles técnicos.</li>
+    </ul>
+
+    <h2>🚀 Uso con Spring Boot</h2>
+    <p>
+      Dentro de un proyecto con <b>Spring Boot</b>:
+    </p>
+    <ul>
+      <li>📦 Se puede anotar una implementación concreta con <code>@Repository</code>.</li>
+      <li>🧩 Gracias a la inyección de dependencias de Spring, los servicios pueden usar esta interfaz sin conocer la implementación.</li>
+      <li>🗃️ Si se usa Spring Data, incluso puede generarse automáticamente una implementación del repositorio.</li>
+    </ul>
+    <div class="note">👉 Spring Boot proporciona la infraestructura, pero la interfaz sigue siendo <b>puro dominio</b>.</div>
+
+    <h2>📖 Javadoc en formato legible</h2>
+    <div class="important">
+      <p><b>Descripción:</b> Puerto de persistencia para operaciones sobre <code>Cliente</code>.  
+      Define los métodos que debe implementar cualquier repositorio, manteniendo la independencia entre dominio e infraestructura.</p>
+    </div>
+
+    <h3>🌟 Principios aplicados</h3>
+    <ul>
+      <li>✅ <b>SRP (Single Responsibility):</b> cada método tiene una sola responsabilidad (obtener o insertar clientes).</li>
+      <li>📐 <b>ISP (Interface Segregation):</b> la interfaz es pequeña y específica.</li>
+      <li>🔄 <b>DIP (Dependency Inversion):</b> la capa de aplicación depende de esta abstracción, no de implementaciones concretas.</li>
+    </ul>
+
+    <h3>🛠️ Métodos</h3>
+    <div class="example">
+      Optional&lt;Cliente&gt; obtenerCliente(String tipoDocumento, long numeroDocumento)
+    </div>
+    <p>🔍 Obtiene un cliente por tipo y número de documento.</p>
+    <ul>
+      <li>📥 <b>Parámetros:</b> <code>tipoDocumento</code> (no nulo ni vacío), <code>numeroDocumento</code> (mayor que 0).</li>
+      <li>📤 <b>Retorno:</b> <code>Optional&lt;Cliente&gt;</code> con el cliente si existe, vacío si no.</li>
+    </ul>
+
+    <div class="example">
+      void insertarCliente(Cliente cliente)
+    </div>
+    <p>🆕 Inserta un nuevo cliente en el repositorio.</p>
+    <ul>
+      <li>📥 <b>Parámetro:</b> <code>cliente</code> (no nulo).</li>
+    </ul>
+
+    <h3>✍️ Autor</h3>
+    <p>👩‍💻 Aura Cristina Garzón Rodríguez</p>
+
+    <h3>📅 Desde</h3>
+    <p>23 Sep 2025</p>
+
+    <div class="footer">
+      📝 Documentación generada a partir del Javadoc original
+    </div>
+  </div>
+</body>
+</html>

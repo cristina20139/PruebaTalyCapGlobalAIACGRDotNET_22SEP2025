@@ -26,6 +26,9 @@ import org.springframework.context.annotation.Bean;
  * @author Aura
  * Cristina Garzon Rodriguez
  * @since 23 Sep 2025
+ *
+ * Para probar ir a Swagger http://localhost:8080/swagger-ui/index.html
+ *
  */
 @SpringBootApplication
 public class ClientesApp {

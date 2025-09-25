@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Secuencia Consulta Cliente</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Secuencia UML – Consulta de Cliente</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento detalla la interacción entre los diferentes componentes durante el proceso de consulta de un cliente, utilizando un <b>diagrama de secuencia UML</b>. Se visualizan los mensajes intercambiados entre los actores y las capas del sistema para la obtención de los datos de un cliente.
+    </p>
+
+    <img src="cid:image5" alt="Diagrama de secuencia UML de consulta de cliente" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Secuencia (Sequence Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El estándar UML 2.5.1 permite modelar la dinámica de los sistemas, especificando el orden y el flujo de los mensajes entre objetos y actores.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Usuario</b> inicia el proceso llamando a <code>solicitarCliente(tipo, nro)</code> en el <b>ClienteController</b>.
+      </li>
+      <li>
+        <b>ClienteController</b> delega la solicitud a <code>obtenerCliente(tipo, nro)</code> del <b>ClienteService</b>.
+      </li>
+      <li>
+        <b>ClienteService</b> invoca <code>buscarCliente(tipo, nro)</code> en <b>ClienteRepositoryImpl</b> para acceder a la capa de datos.
+      </li>
+      <li>
+        <b>ClienteRepositoryImpl</b> retorna la información del cliente encontrado a <b>ClienteService</b> (<code>clienteEncontrado</code>).
+      </li>
+      <li>
+        <b>ClienteService</b> procesa el resultado y lo devuelve al <b>ClienteController</b> (<code>resultadoCliente</code>).
+      </li>
+      <li>
+        <b>ClienteController</b> responde al <b>Usuario</b> con <code>respuestaCliente</code> (los datos del cliente o mensaje de error).
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Secuencia</h2>
+    <div class="important">
+      El diagrama de secuencia UML es especialmente útil porque:
+      <ul>
+        <li>Permite visualizar el flujo temporal de los mensajes y la colaboración entre objetos y actores.</li>
+        <li>Facilita la comprensión del orden de las llamadas y respuestas en la arquitectura multicapa.</li>
+        <li>Ayuda a identificar posibles cuellos de botella, redundancias o dependencias excesivas.</li>
+        <li>Es un estándar ampliamente aceptado para documentar y comunicar la lógica dinámica de un caso de uso.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento utiliza un estilo visual moderno y profesional:
+      <ul>
+        <li>Colores suaves y bloques diferenciados para destacar notas y advertencias.</li>
+        <li>Tipografía clara y diagramas centrados con borde sutil.</li>
+        <li>La secuencia de mensajes se muestra de izquierda a derecha para un fácil seguimiento.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>&nbsp;</p>
+      <p><img src="DiagramaUMLColaboracion.png" width="1128" height="59"></p>
+    </div>
+</div>
+</body>
+</html>

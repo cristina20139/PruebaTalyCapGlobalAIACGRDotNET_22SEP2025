@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Clases y Arquitectura</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 1200px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 800px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Clases UML – Arquitectura Sistema Gestión de Clientes</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      El siguiente documento describe la arquitectura y las relaciones principales entre clases del <b>Sistema de Gestión de Clientes</b> utilizando un diagrama UML de clases. En el diagrama se visualizan paquetes, componentes y dependencias clave para comprender la estructura y el flujo de información en la aplicación.
+    </p>
+
+    <img src="cid:image4" alt="Diagrama de clases y arquitectura del sistema gestión de clientes" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Clases (Class Diagram) con paquetes</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> Se emplea UML 2.5.1, estándar en la industria, para modelar la arquitectura de sistemas Java Spring Boot, permitiendo visualizar clases, dependencias, interfaces e inyecciones de dependencias.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li><b>Paquetes (Packages):</b>
+        <ul>
+          <li><b>com.clinicos.backend.api.rest</b>: Raíz del sistema, organizado en subpaquetes: <code>infrastructure</code> (repository, controller, utility), <code>application</code>, <code>domain</code> (model, ports).</li>
+        </ul>
+      </li>
+      <li><b>Principales clases y componentes:</b>
+        <ul>
+          <li>
+            <b>Cliente:</b> Clase del dominio que representa la entidad cliente, con atributos y métodos de acceso.
+          </li>
+          <li>
+            <b>ClienteRepository</b> (interface en <code>ports</code>): Define las operaciones de persistencia para Cliente.
+          </li>
+          <li>
+            <b>ClienteRepositoryImpl</b> (en <code>repository</code>): Implementa ClienteRepository usando JDBC.
+          </li>
+          <li>
+            <b>ClienteService</b> (en <code>application</code>): Orquesta la lógica de negocio, utiliza el repositorio y expone métodos como <code>obtenerCliente</code> y <code>crearCliente</code>.
+          </li>
+          <li>
+            <b>ClienteController</b> (en <code>controller</code>): Expone la API REST, recibe peticiones y delega en el servicio.
+          </li>
+          <li>
+            <b>GlobalExceptionHandler</b> (en <code>controller</code>): Gestiona las excepciones y responde con mensajes claros.
+          </li>
+          <li>
+            <b>ClienteGenerator</b> (en <code>utility</code>): Utilidad para generar datos de prueba.
+          </li>
+          <li>
+            <b>ClientesApp</b>: Clase principal de arranque (main) y de inicialización de datos.
+          </li>
+        </ul>
+      </li>
+      <li><b>Interacciones y relaciones:</b>
+        <ul>
+          <li>El <b>ClienteController</b> utiliza <b>ClienteService</b>.</li>
+          <li>El <b>ClienteService</b> usa <b>ClienteRepository</b> (inyectado) y <b>ClienteGenerator</b> (para datos de prueba).</li>
+          <li><b>ClienteRepositoryImpl</b> implementa la interfaz <b>ClienteRepository</b>.</li>
+          <li><b>GlobalExceptionHandler</b> maneja las excepciones lanzadas por el controlador.</li>
+          <li><b>ClientesApp</b> orquesta la inicialización y puede usar <b>ClienteGenerator</b>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Modelo de dominio:</b> La clase <b>Cliente</b> encapsula los atributos y la lógica propia de un cliente en el sistema.
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Clases</h2>
+    <div class="important">
+      El diagrama de clases UML es esencial para:
+      <ul>
+        <li>Visualizar la arquitectura de alto nivel y las dependencias en proyectos Java y Spring Boot.</li>
+        <li>Comprender la estructura interna, las relaciones de herencia, implementación e inyección de dependencias.</li>
+        <li>Facilitar el mantenimiento, escalabilidad y comunicación entre equipos de desarrollo y QA.</li>
+        <li>Documentar contratos (interfaces), clases de dominio y utilidades.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento utiliza un estilo visual claro, profesional y consistente:
+      <ul>
+        <li>Colores suaves y separación visual de bloques para una lectura cómoda.</li>
+        <li>Tipografía moderna y legible, diagramas centrados y con bordes sutiles.</li>
+        <li>El diagrama muestra los paquetes y clases agrupadas para reflejar la estructura real del código.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>&nbsp;</p>
+      <p><img src="DiagramaUMLClases.png" width="2452" height="1675"></p>
+    </div>
+</div>
+</body>
+</html>

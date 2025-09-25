@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Casos de Uso Gestión de Clientes</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Casos de Uso UML – Sistema Gestión de Clientes</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe los principales casos de uso del <b>Sistema Gestión de Clientes</b> mediante un diagrama UML de casos de uso. El diagrama identifica los actores externos (Administrador, Usuario API) y sus interacciones clave con el sistema.
+    </p>
+
+    <img src="cid:image3" alt="Diagrama de casos de uso UML del sistema gestión de clientes" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Casos de Uso (Use Case Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El estándar UML 2.5.1 para diagramas de casos de uso permite modelar de manera sencilla las funcionalidades principales desde la perspectiva de los usuarios/actores.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li><b>Actores:</b>
+        <ul>
+          <li><b>Administrador:</b> Puede generar clientes de prueba para propósitos de desarrollo o pruebas internas.</li>
+          <li><b>Usuario API:</b> Representa a sistemas externos o usuarios que interactúan mediante la API para consultar o crear clientes, y recibir mensajes de error claros.</li>
+        </ul>
+      </li>
+      <li><b>Casos de uso principales:</b>
+        <ul>
+          <li><b>Generar clientes de prueba:</b> Accesible solo para el Administrador.</li>
+          <li><b>Consultar cliente por documento:</b> Permite buscar información de un cliente usando un identificador. Disponible para el Usuario API.</li>
+          <li><b>Crear cliente:</b> Permite registrar un nuevo cliente en el sistema mediante la API.</li>
+          <li><b>Recibir errores claros:</b> El sistema proporciona respuestas claras y estandarizadas a los errores (<code>400</code>, <code>404</code>, <code>500</code>), facilitando la integración y depuración.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Extensión:</b> El caso de uso "Recibir errores claros" incluye explícitamente la devolución de códigos de error HTTP estándar, como se indica en la anotación.
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Casos de Uso</h2>
+    <div class="important">
+      El diagrama de casos de uso es la mejor opción para:
+      <ul>
+        <li>Visualizar rápidamente las funcionalidades principales del sistema desde la perspectiva de los usuarios y sistemas externos.</li>
+        <li>Facilitar la comunicación con stakeholders no técnicos y equipos de desarrollo.</li>
+        <li>Definir el alcance funcional y los requisitos iniciales de la solución.</li>
+        <li>Establecer límites claros sobre qué actores pueden acceder a cada funcionalidad.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento utiliza un estilo limpio, legible y profesional:
+      <ul>
+        <li>Colores suaves y bloques diferenciados para resaltar notas, advertencias y ejemplos.</li>
+        <li>Tipografía moderna y clara.</li>
+        <li>El diagrama se muestra centrado, con borde y anotaciones para facilitar el entendimiento visual.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p><img src="DiagramaUMLCasoUso.png" width="1175" height="217"></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Secuencia Avanzada</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 1100px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Secuencia UML – Escenarios de Cliente</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe, mediante un <b>diagrama de secuencia UML avanzado</b>, los principales escenarios de interacción del usuario con el sistema de gestión de clientes: consulta, creación y generación de clientes de prueba. Se visualizan actores, componentes y el flujo de mensajes con manejo de condiciones y respuestas HTTP.
+    </p>
+
+    <img src="cid:image10" alt="Diagrama de secuencia UML avanzado para escenarios de cliente" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Secuencia (Sequence Diagram, con fragmentos alternativos)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El diagrama aplica fragmentos <b>alt</b> para ramificación (cliente existe/no existe) y muestra tres escenarios clave con sus flujos y respuestas.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Escenario: Consultar Cliente</b>
+        <ul>
+          <li>El usuario solicita un cliente vía <code>GET /clientes/{tipo}/{documento}</code>.</li>
+          <li><b>ClienteController</b> delega la consulta a <b>ClienteService</b>, que a su vez consulta en <b>ClienteRepositoryImpl</b>.</li>
+          <li>Fragmento <b>alt</b>: Si el cliente existe, retorna <code>200 OK + Cliente</code>; si no existe, se lanza <code>ClienteNoEncontradoException</code> y retorna <code>404 Not Found</code> vía <b>GlobalExceptionHandler</b>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Escenario: Crear Cliente</b>
+        <ul>
+          <li>El usuario envía un <code>POST /clientes</code> con los datos del cliente.</li>
+          <li>La creación fluye desde <b>ClienteController</b> a <b>ClienteService</b> y luego a <b>ClienteRepositoryImpl</b>.</li>
+          <li>Al crearse correctamente, se responde con <code>201 Created + Cliente</code>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Escenario: Generar Clientes de Prueba</b>
+        <ul>
+          <li>El usuario solicita generación masiva con <code>generarClientesPrueba(cantidad)</code>.</li>
+          <li><b>ClienteGenerator</b> crea y guarda los clientes de prueba, retornando la lista generada al usuario.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Secuencia Avanzada</h2>
+    <div class="important">
+      Este diagrama es ideal porque:
+      <ul>
+        <li>Permite visualizar flujos complejos y múltiples escenarios en un solo modelo.</li>
+        <li>Fragmentos alternativos <b>alt</b> facilitan el entendimiento de condiciones (éxito/fracaso).</li>
+        <li>Documenta el flujo de interacciones y el manejo de excepciones/respuestas HTTP.</li>
+        <li>Es un estándar útil para desarrolladores, testers y analistas funcionales.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo moderno y profesional:
+      <ul>
+        <li>Colores suaves, bloques diferenciados y tipografía clara.</li>
+        <li>El diagrama está centrado y segmentado por escenarios para fácil navegación.</li>
+        <li>Se destacan actores, componentes y ramificaciones condicionales.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLInteraccionalGeneral.png" width="1199" height="939"></div>
+</div>
+</body>
+</html>

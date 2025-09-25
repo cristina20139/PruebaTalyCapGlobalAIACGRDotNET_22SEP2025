@@ -1,0 +1,14 @@
+DiagramaUMLActividad
+DiagramaUMLCasosDeUso
+DiagramaUMLClases
+DiagramaUMLColaboracion
+DiagramaUMLComportamiento
+DiagramaUMLComponentes
+DiagramaUMLDespliegue
+DiagramaUMLEstructuraCompuesta
+DiagramaUMLEstado
+DiagramaUMLInteraccionGeneral
+DiagramaUMLObjetos
+DiagramaUMLPaquetes
+DiagramaUMLSecuencia
+DiagramaUMLTiempo

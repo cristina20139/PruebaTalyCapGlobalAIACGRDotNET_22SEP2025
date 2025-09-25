@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Despliegue</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 1100px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Despliegue UML – Sistema Gestión de Clientes</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe la infraestructura de despliegue del <b>Sistema Gestión de Clientes</b> mediante un <b>diagrama de despliegue UML</b>. Se ilustran los principales nodos físicos y virtuales, así como la comunicación y ubicación de los componentes de software en la arquitectura.
+    </p>
+
+    <img src="cid:image7" alt="Diagrama de despliegue UML del sistema gestión de clientes" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Despliegue (Deployment Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El diagrama de despliegue UML 2.5.1 permite modelar la topología física y lógica del sistema, ubicando componentes en hardware y especificando protocolos de comunicación.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Usuario & Internet:</b> El usuario accede al sistema a través de Internet, utilizando el protocolo seguro <code>HTTPS</code>.
+      </li>
+      <li>
+        <b>Servidor Web:</b> El tráfico llega primero a un servidor web (Nginx/Apache) que actúa como proxy inverso y balanceador, recibiendo peticiones HTTPS y reenviándolas como HTTP al servidor de aplicaciones.
+      </li>
+      <li>
+        <b>Servidor de Aplicaciones:</b> Contiene el backend implementado en Spring Boot, con componentes como <code>ClienteController</code>, <code>ClienteService</code> y <code>GlobalExceptionHandler</code>.
+      </li>
+      <li>
+        <b>Servidor de Base de Datos:</b> Alberga PostgreSQL, accedido vía <code>JDBC</code> desde el servidor de aplicaciones para persistencia de datos.
+      </li>
+      <li>
+        <b>Servidor Utilidades:</b> Proporciona servicios auxiliares, como <code>ClienteGenerator</code>, que puede ser consumido vía REST/HTTP.
+      </li>
+      <li>
+        <b>Comunicación:</b>
+        <ul>
+          <li>HTTPS entre Usuario–Internet–Servidor Web.</li>
+          <li>HTTP (proxy) entre Servidor Web y Servidor de Aplicaciones.</li>
+          <li>JDBC entre Servidor de Aplicaciones y Base de Datos.</li>
+          <li>REST/HTTP entre Servidor de Aplicaciones y Servidor Utilidades.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Despliegue</h2>
+    <div class="important">
+      El diagrama de despliegue UML es fundamental porque:
+      <ul>
+        <li>Visualiza la infraestructura física y lógica del sistema.</li>
+        <li>Permite planificar la seguridad, escalabilidad y disponibilidad.</li>
+        <li>Deja claro el flujo de comunicación y los protocolos utilizados (HTTPS, HTTP, JDBC, REST).</li>
+        <li>Facilita la comunicación entre equipos de desarrollo, operaciones y arquitectura.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo profesional y homogéneo:
+      <ul>
+        <li>Colores suaves, tipografía moderna y bloques diferenciados.</li>
+        <li>El diagrama está centrado, con bordes y etiquetas para facilitar la comprensión.</li>
+        <li>Los nodos y componentes están claramente identificados y relacionados realísticamente.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLDespliegue.png" width="1044" height="708"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación - ClienteService</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #2c3e50; }
+    h1 { font-size: 26px; margin-bottom: 20px; }
+    h2 { font-size: 22px; margin-top: 30px; }
+    h3 { font-size: 18px; margin-top: 20px; }
+    p { line-height: 1.6; }
+    ul { margin: 10px 0 10px 25px; }
+    code, pre { background: #f4f6f8; padding: 2px 6px; border-radius: 6px; font-family: monospace; }
+    pre { padding: 12px; overflow-x: auto; }
+    .meta { margin-top: 30px; padding: 12px; background: #f9f9f9; border-left: 4px solid #2c3e50; }
+    .highlight { background: #eaf5ff; padding: 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Documentación de la clase <code>ClienteService</code></h1>
+
+    <h2>📌 Rol en la Arquitectura Hexagonal</h2>
+    <p>La clase <strong>ClienteService</strong> pertenece a la <strong>capa de aplicación</strong>. Aquí se orquesta la lógica de negocio mínima necesaria para los casos de uso relacionados con clientes.</p>
+    <ul>
+      <li>🏗️ <strong>Application service:</strong> coordina las operaciones de negocio (obtener y crear clientes).</li>
+      <li>🧩 <strong>Interacción con puertos:</strong> utiliza la interfaz <code>ClienteRepository</code>, que actúa como puerto en la arquitectura hexagonal.</li>
+      <li>🔄 <strong>Separación de capas:</strong> no conoce la implementación concreta del repositorio.</li>
+      <li>🚦 <strong>Flujo típico:</strong> Controller → <code>ClienteService</code> → <code>ClienteRepository</code> → Adaptador de persistencia.</li>
+    </ul>
+    <p><strong>En conclusión:</strong> ClienteService expone casos de uso y mantiene el dominio desacoplado de la infraestructura.</p>
+
+    <h2>🚀 Uso de Spring Boot en estos fuentes</h2>
+    <ul>
+      <li>📦 <code>@Service</code>: convierte <code>ClienteService</code> en un bean gestionado por Spring.</li>
+      <li>🔗 <strong>Inyección por constructor:</strong> Spring resuelve la implementación de <code>ClienteRepository</code>.</li>
+      <li>⚠️ <strong>Excepciones:</strong> relanzadas para que el <code>GlobalExceptionHandler</code> traduzca errores en respuestas HTTP.</li>
+      <li>📝 <strong>Logging:</strong> usa SLF4J, integrado con Logback en Spring Boot.</li>
+      <li>💾 <strong>Transacciones:</strong> recomendable aplicar <code>@Transactional</code> en <code>crearCliente</code>.</li>
+      <li>🧪 <strong>Pruebas:</strong> se puede mockear <code>ClienteRepository</code> para pruebas unitarias.</li>
+    </ul>
+
+    <h2>📖 Javadoc en formato legible</h2>
+    <h3>Descripción general</h3>
+    <p>La clase <code>ClienteService</code> define la lógica de aplicación para <strong>obtener</strong> y <strong>crear clientes</strong>, aplicando principios <strong>SOLID</strong> y respetando la <strong>arquitectura hexagonal</strong>.</p>
+
+    <h3>🌟 <a href="SOLID.html" target="_blank">Principios aplicados</a></h3>
+    <ul>
+      <li>✅ <strong>(Single Responsibility) SRP:</strong> cada método tiene una responsabilidad única.</li>
+      <li>🔄 <strong>(Dependency Inversion) DIP:</strong> depende de <code>ClienteRepository</code> (abstracción).</li>
+      <li>🧹 <strong>Clean Code:</strong> métodos cortos y fáciles de probar.</li>
+      <li>🏛️ <strong>Hexagonal:</strong> interacción con repositorios a través de puertos.</li>
+      <li>📡 <strong>Observabilidad:</strong> logs en INFO, WARN y ERROR.</li>
+    </ul>
+
+    <h2>🛠️ Métodos principales</h2>
+
+    <h3>1. <code>Optional&lt;Cliente&gt; obtenerCliente(String tipoDocumento, long numeroDocumento)</code></h3>
+    <pre>
+/**
+ * Obtiene un cliente por su tipo y número de documento.
+ *
+ * @param tipoDocumento Tipo de documento (ej. CC, CE, Pasaporte).
+ * @param numeroDocumento Número de documento.
+ * @return Optional con el cliente si existe; vacío si no.
+ * @throws RuntimeException Si ocurre un error inesperado.
+ *
+ * @author
+ * Aura Cristina Garzón Rodríguez
+ * @since 23 Sep 2025
+ */
+    </pre>
+
+    <p><strong>Explicación línea por línea:</strong></p>
+    <ul>
+      <li>📌 <em>"Obtiene un cliente..."</em>: resumen del propósito.</li>
+      <li><code>@param</code>: documenta parámetros esperados.</li>
+      <li><code>@return</code>: uso de Optional.</li>
+      <li><code>@throws</code>: aclara posibles errores.</li>
+      <li><code>@autor</code> y <code>@since</code>: metadatos de trazabilidad.</li>
+    </ul>
+
+    <p><strong>Flujo del método:</strong></p>
+    <ul>
+      <li>📝 <code>logger.info</code>: registra inicio de búsqueda.</li>
+      <li>📡 Llama al puerto <code>clienteRepository.obtenerCliente(...)</code>.</li>
+      <li>✅/❌ Logs según se encuentre o no el cliente.</li>
+      <li>💥 <code>catch(Exception e)</code>: captura, loguea y relanza la excepción.</li>
+    </ul>
+
+    <h3>2. <code>void crearCliente(Cliente cliente)</code></h3>
+    <pre>
+/**
+ * Crea un nuevo cliente en el sistema.
+ *
+ * @param cliente Cliente a crear. No puede ser null.
+ * @throws RuntimeException Si ocurre un error inesperado.
+ *
+ * @author
+ * Aura Cristina Garzón Rodríguez
+ * @since 23 Sep 2025
+ */
+    </pre>
+
+    <p><strong>Explicación clave:</strong></p>
+    <ul>
+      <li>📝 <code>logger.info</code>: marca inicio de creación.</li>
+      <li>📡 <code>clienteRepository.insertarCliente(cliente)</code>: delega persistencia.</li>
+      <li>✅ Log al completar con éxito.</li>
+      <li>💥 Manejo de excepciones con re-lanzamiento.</li>
+    </ul>
+
+    <div class="meta">
+      <p><strong>✍️ Autor:</strong> Aura Cristina Garzón Rodríguez</p>
+      <p><strong>📅 Desde:</strong> 23 Sep 2025</p>
+    </div>
+  </div>
+</body>
+</html>

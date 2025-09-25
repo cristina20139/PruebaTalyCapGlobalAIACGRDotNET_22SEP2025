@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>📘 Documentación - ClienteController</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📘 ClienteController</h1>
+    <p>Controlador REST que expone operaciones sobre <code>Cliente</code>.</p>
+
+    <h2>🏗️ Rol en la Arquitectura Hexagonal</h2>
+    <p>Este controlador pertenece a la <b>capa de infraestructura</b> y actúa como <b>adaptador de entrada</b>:</p>
+    <ul>
+      <li>🌐 Recibe solicitudes HTTP.</li>
+      <li>➡️ Delegar la lógica de negocio a <code>ClienteService</code>.</li>
+      <li>🔌 Se integra con la aplicación sin acoplarla a frameworks.</li>
+      <li>🛡️ Favorece el desacoplamiento entre la infraestructura y el dominio.</li>
+    </ul>
+
+    <div class="note">
+      📌 <b>Nota:</b> En la arquitectura hexagonal, los controladores REST son “puertos de entrada” que permiten a sistemas externos interactuar con el núcleo de la aplicación.
+    </div>
+
+    <h2>✨ Principios aplicados</h2>
+    <ul>
+      <li>📏 <b>Single Responsibility  (SRP):</b> expone endpoints y delega la lógica de negocio.</li>
+      <li>🔄 <b>Dependency Inversion (DIP):</b> depende de la abstracción <code>ClienteService</code>, no de implementaciones concretas.</li>
+      <li>🧩 <b>Open/Closed Principle (OCP):</b> se pueden agregar endpoints sin alterar la lógica actual.</li>
+      <li>📝 <b>Logs claros:</b> info, advertencias ⚠️ y errores ❌ para trazabilidad.</li>
+    </ul>
+
+    <h2>⚙️ Manejo de Errores</h2>
+    <p>Los errores se manejan con <code>@RestControllerAdvice</code> y devuelven códigos HTTP adecuados:</p>
+    <ul>
+      <li>✅ <b>200 OK:</b> Cliente encontrado.</li>
+      <li>⚠️ <b>400 Bad Request:</b> Parámetros inválidos.</li>
+      <li>❌ <b>404 Not Found:</b> Cliente no encontrado.</li>
+      <li>💥 <b>500 Internal Server Error:</b> Error inesperado.</li>
+    </ul>
+
+    <h2>📥 Método destacado</h2>
+    <h3>🔍 obtenerCliente</h3>
+    <p>Busca un cliente por tipo y número de documento.</p>
+    <ul>
+      <li><b>Parámetros:</b></li>
+      <ul>
+        <li>🆔 <code>tipoDocumento</code>: Tipo de documento (CC, CE, Pasaporte).</li>
+        <li>#️⃣ <code>numeroDocumento</code>: Número de documento (> 0).</li>
+      </ul>
+      <li><b>Retorna:</b> <code>ResponseEntity&lt;Cliente&gt;</code> con el cliente o error.</li>
+      <li><b>Excepciones:</b></li>
+      <ul>
+        <li>⚠️ <code>IllegalArgumentException</code>: parámetros inválidos.</li>
+        <li>❌ <code>NoSuchElementException</code>: cliente no encontrado.</li>
+        <li>💥 <code>RuntimeException</code>: error inesperado.</li>
+      </ul>
+    </ul>
+
+    <div class="footer">
+      📅 Documentado por <b>Aura Cristina Garzón Rodríguez</b> — 23 Sep 2025
+    </div>
+  </div>
+</body>
+</html>

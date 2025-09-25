@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Principios SOLID - Documentación</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: #343a40;
+      color: #fff;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.9em;
+    }
+    header p { margin: 6px 0 0; opacity: 0.9; }
+    .container {
+      max-width: 980px;
+      margin: 28px auto;
+      background: #fff;
+      padding: 26px 36px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    h2 {
+      color: #0d6efd;
+      margin-top: 28px;
+      font-size: 1.25em;
+    }
+    h3 {
+      margin-top: 14px;
+      color: #495057;
+      font-size: 1em;
+    }
+    .definition {
+      background: #eef6ff;
+      border-left: 5px solid #0d6efd;
+      padding: 10px 14px;
+      margin: 12px 0;
+      border-radius: 6px;
+      color: #0b3b66;
+    }
+    .highlight {
+      background: #e9f7ef;
+      border-left: 5px solid #28a745;
+      padding: 10px 14px;
+      margin: 12px 0;
+      border-radius: 6px;
+      color: #155724;
+    }
+    .bad {
+      background: #fdecea;
+      border-left: 5px solid #e74c3c;
+      padding: 10px 14px;
+      margin: 12px 0;
+      border-radius: 6px;
+      color: #721c24;
+    }
+    pre {
+      background: #282c34;
+      color: #f8f8f2;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.95em;
+      margin: 12px 0;
+    }
+    code { font-family: "Fira Code", monospace; }
+    footer {
+      margin-top: 22px;
+      padding-top: 12px;
+      border-top: 1px solid #e9ecef;
+      color: #6c757d;
+    }
+    .meta { margin-top: 10px; background: #f9f9f9; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Principios SOLID en Java</h1>
+    <p>Definiciones, señales de violación y ejemplos prácticos</p>
+  </header>
+
+  <div class="container">
+    <h2>Introducción</h2>
+    <p>Los principios <strong>SOLID</strong> son cinco reglas de diseño orientado a objetos que facilitan la mantenibilidad, extensibilidad y testabilidad del software. A continuación encontrarás la definición de cada principio, señales de violación y ejemplos en Java (antes / después).</p>
+
+    <h2>1) S — Single Responsibility Principle (SRP)</h2>
+    <div class="definition">
+      <strong>Definición:</strong> Una clase debe tener una, y sólo una, razón para cambiar. Esto significa que cada clase debe encargarse de una única responsabilidad o propósito.
+    </div>
+    <div class="highlight">Idea simple: una clase = una responsabilidad.</div>
+
+    <h3>Señales de violación</h3>
+    <ul>
+      <li>La clase realiza validaciones, persistencia y envío de notificaciones al mismo tiempo.</li>
+      <li>Cambios en dos funcionalidades distintas requieren modificar la misma clase.</li>
+    </ul>
+
+    <h3>Antes (violación)</h3>
+    <pre><code>class UserService {
+    void register(User u) {
+        // validar
+        if (u.getEmail() == null) throw new RuntimeException();
+        // persistir
+        userDao.save(u);
+        // enviar email
+        emailSender.sendWelcome(u.getEmail());
+    }
+}</code></pre>
+
+    <h3>Después (aplicando SRP)</h3>
+    <pre><code>class UserValidator { void validate(User u) { /* reglas */ } }
+interface UserRepository { void save(User u); }
+interface EmailSender { void send(String to, String body); }
+
+class UserService {
+    private final UserValidator validator;
+    private final UserRepository repo;
+    private final EmailSender emailSender;
+
+    UserService(UserValidator v, UserRepository r, EmailSender e){
+        this.validator = v;
+        this.repo = r;
+        this.emailSender = e;
+    }
+
+    void register(User u){
+        validator.validate(u);
+        repo.save(u);
+        emailSender.send(u.getEmail(), "Bienvenido");
+    }
+}</code></pre>
+
+    <h2>2) O — Open/Closed Principle (OCP)</h2>
+    <div class="definition">
+      <strong>Definición:</strong> Las entidades (clases, módulos, funciones) deben estar abiertas para extensión, pero cerradas para modificación. Es decir, se debe poder añadir comportamiento sin modificar el código existente.
+    </div>
+    <div class="highlight">Idea simple: extiende, no cambies.</div>
+
+    <h3>Señales de violación</h3>
+    <ul>
+      <li>Uso extensivo de condicionales (if/switch) que cambian cada vez que se añade un nuevo tipo.</li>
+      <li>Modificar clases existentes para añadir variantes o reglas de negocio.</li>
+    </ul>
+
+    <h3>Antes (violación)</h3>
+    <pre><code>class DiscountService {
+    double calculate(Order o) {
+        if (o.getType().equals("BLACK_FRIDAY")) return o.total() * 0.5;
+        if (o.getType().equals("LOYAL")) return o.total() * 0.9;
+        return o.total();
+    }
+}</code></pre>
+
+    <h3>Después (aplicando OCP)</h3>
+    <pre><code>interface DiscountPolicy { double apply(Order o); }
+
+class BlackFridayDiscount implements DiscountPolicy {
+    public double apply(Order o){ return o.total() * 0.5; }
+}
+class LoyalCustomerDiscount implements DiscountPolicy {
+    public double apply(Order o){ return o.total() * 0.9; }
+}
+
+class DiscountService {
+    private final List&lt;DiscountPolicy&gt; policies;
+    DiscountService(List&lt;DiscountPolicy&gt; policies){ this.policies = policies; }
+    double calculate(Order o){
+        return policies.stream()
+                       .mapToDouble(p -> p.apply(o))
+                       .min()
+                       .orElse(o.total());
+    }
+}</code></pre>
+
+    <h2>3) L — Liskov Substitution Principle (LSP)</h2>
+    <div class="definition">
+      <strong>Definición:</strong> Si S es una subclase de T, entonces los objetos de tipo T pueden ser reemplazados por objetos de tipo S sin alterar las propiedades deseables del programa (corrección, exactitud, etc.). Las subclases deben cumplir el contrato de la superclase.
+    </div>
+    <div class="highlight">Idea simple: las subclases no deben sorprender al cliente.</div>
+
+    <h3>Señales de violación</h3>
+    <ul>
+      <li>Tests que pasan con la superclase fallan con la subclase.</li>
+      <li>Subclases alteran invariantes o precondiciones de la superclase.</li>
+    </ul>
+
+    <h3>Ejemplo problemático (violación)</h3>
+    <pre><code>class Rectangle {
+    void setWidth(int w) { this.width = w; }
+    void setHeight(int h) { this.height = h; }
+    int area(){ return width * height; }
+}
+class Square extends Rectangle {
+    void setWidth(int w){ super.setWidth(w); super.setHeight(w); }
+    void setHeight(int h){ setWidth(h); }
+}</code></pre>
+
+    <h3>Mejor diseño (evitar herencia cuando los contratos difieren)</h3>
+    <pre><code>interface Shape { int area(); }
+class Rectangle implements Shape { /* ... */ }
+class Square implements Shape { /* ... */ }</code></pre>
+
+    <h2>4) I — Interface Segregation Principle (ISP)</h2>
+    <div class="definition">
+      <strong>Definición:</strong> Es mejor tener muchas interfaces específicas en lugar de una interfaz grande y general. Los clientes no deberían verse forzados a depender de interfaces que no usan.
+    </div>
+    <div class="highlight">Idea simple: interfaces pequeñas y cohesivas.</div>
+
+    <h3>Señales de violación</h3>
+    <ul>
+      <li>Clases implementan métodos que no usan y lanzan UnsupportedOperationException.</li>
+      <li>Interfaces con métodos no relacionados entre sí.</li>
+    </ul>
+
+    <h3>Antes (violación)</h3>
+    <pre><code>interface MultiFunctionDevice {
+    void print(Document d);
+    void scan(Document d);
+    void fax(Document d);
+}
+class SimplePrinter implements MultiFunctionDevice {
+    public void print(Document d){ /* ok */ }
+    public void scan(Document d){ throw new UnsupportedOperationException(); }
+    public void fax(Document d){ throw new UnsupportedOperationException(); }
+}</code></pre>
+
+    <h3>Después (aplicando ISP)</h3>
+    <pre><code>interface Printer { void print(Document d); }
+interface Scanner { void scan(Document d); }
+interface Fax { void fax(Document d); }
+
+class SimplePrinter implements Printer {
+    public void print(Document d){ /* ... */ }
+}
+class MultiFunctionPrinter implements Printer, Scanner, Fax { /* ... */ }</code></pre>
+
+    <h2>5) D — Dependency Inversion Principle (DIP)</h2>
+    <div class="definition">
+      <strong>Definición:</strong> Los módulos de alto nivel no deben depender de módulos de bajo nivel; ambos deben depender de abstracciones. Además, las abstracciones no deben depender de detalles; los detalles deben depender de abstracciones.
+    </div>
+    <div class="highlight">Idea simple: programa contra interfaces, no contra implementaciones concretas.</div>
+
+    <h3>Señales de violación</h3>
+    <ul>
+      <li>Código de alto nivel crea instancias concretas de repositorios/servicios (uso de new dentro del servicio).</li>
+      <li>Dificultad para reemplazar implementaciones o para mockear dependencias en tests.</li>
+    </ul>
+
+    <h3>Antes (violación)</h3>
+    <pre><code>class ClienteService {
+    private final MySqlClienteRepository repo = new MySqlClienteRepository();
+    Cliente find(...) { return repo.find(...); }
+}</code></pre>
+
+    <h3>Después (aplicando DIP)</h3>
+    <pre><code>interface ClienteRepository { Optional&lt;Cliente&gt; find(String tipo, long num); }
+
+class MySqlClienteRepository implements ClienteRepository { /* ... */ }
+
+class ClienteService {
+    private final ClienteRepository repo;
+    ClienteService(ClienteRepository repo){ this.repo = repo; } // inyección
+    Optional&lt;Cliente&gt; find(...) { return repo.find(...); }
+}</code></pre>
+
+    <footer>
+      <div class="meta">
+        <strong>Checklist rápido para aplicar SOLID:</strong>
+        <ul>
+          <li>¿Cada clase tiene una única responsabilidad? — SRP</li>
+          <li>¿Puedo añadir variantes sin tocar código existente? — OCP</li>
+          <li>¿Las subclases cumplen los contratos de las superclases? — LSP</li>
+          <li>¿Las interfaces están enfocadas en lo que los clientes usan? — ISP</li>
+          <li>¿Mis servicios dependen de abstracciones (interfaces) y no crean implementaciones concretas? — DIP</li>
+        </ul>
+      </div>
+      <p style="margin-top:12px;">¿Quieres que lo exporte en un HTML con índice navegable y botones para ir a cada principio?</p>
+    </footer>
+  </div>
+</body>
+</html>

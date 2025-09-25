@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación - GlobalExceptionHandler</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 GlobalExceptionHandler</h1>
+    <p><strong>Paquete:</strong> <code>com.clinicos.backend.api.rest.infrastructure.controller</code></p>
+
+    <div class="note">
+      <p>🔹 <strong>Descripción:</strong>  
+      Manejador global de excepciones para la aplicación.  
+      Centraliza el manejo de errores de todos los controladores REST siguiendo el patrón <code>@RestControllerAdvice</code> en Spring Boot.  
+      Permite retornar códigos HTTP consistentes y mensajes claros.</p>
+    </div>
+
+    <h2>✨ Principios aplicados</h2>
+    <ul>
+      <li>📌 <strong>SRP (Single Responsibility):</strong> Esta clase solo maneja excepciones.</li>
+      <li>📌 <strong>OCP (Open/Closed):</strong> Se pueden agregar nuevos handlers sin modificar los existentes.</li>
+      <li>📌 <strong>DIP (Dependency Inversion):</strong> Los controladores dependen de este manejo global en lugar de lógica repetitiva.</li>
+    </ul>
+
+    <h2>👩‍💻 Autor</h2>
+    <p><strong>Aura Cristina Garzón Rodríguez</strong> — <em>23 Sep 2025</em></p>
+
+    <h2>🛠️ Métodos documentados</h2>
+
+    <h3>🔹 handleBadRequest</h3>
+    <div class="important">
+      <p>Maneja errores de validación o parámetros inválidos.</p>
+      <ul>
+        <li>🔸 Devuelve <code>HTTP 400 (Bad Request)</code></li>
+        <li>🔸 Registra log de advertencia con el detalle</li>
+        <li>🔸 Parámetro: <code>IllegalArgumentException</code></li>
+        <li>🔸 Retorno: <code>ResponseEntity&lt;String&gt;</code></li>
+      </ul>
+    </div>
+
+    <h3>🔹 handleNotFound</h3>
+    <div class="important">
+      <p>Maneja casos donde el recurso no existe.</p>
+      <ul>
+        <li>🔸 Devuelve <code>HTTP 404 (Not Found)</code></li>
+        <li>🔸 Registra log informativo</li>
+        <li>🔸 Parámetro: <code>NoSuchElementException</code></li>
+        <li>🔸 Retorno: <code>ResponseEntity&lt;String&gt;</code></li>
+      </ul>
+    </div>
+
+    <h3>🔹 handleRuntime</h3>
+    <div class="important">
+      <p>Maneja cualquier <code>RuntimeException</code> no capturada.</p>
+      <ul>
+        <li>🔸 Devuelve <code>HTTP 500 (Internal Server Error)</code></li>
+        <li>🔸 Centraliza errores inesperados</li>
+        <li>🔸 Registra log de error completo con stacktrace</li>
+        <li>🔸 Parámetro: <code>RuntimeException</code></li>
+        <li>🔸 Retorno: <code>ResponseEntity&lt;String&gt;</code></li>
+      </ul>
+    </div>
+
+    <h2>💻 Código Fuente</h2>
+    <pre><code>
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity&lt;String&gt; handleBadRequest(IllegalArgumentException ex) {
+        logger.warn("❌ Error de validación: {}", ex.getMessage(), ex);
+        return ResponseEntity.badRequest()
+                .body("❌ Error de validación: " + ex.getMessage());
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity&lt;String&gt; handleNotFound(NoSuchElementException ex) {
+        logger.info("❌ Recurso no encontrado", ex);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("❌ Recurso no encontrado");
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity&lt;String&gt; handleRuntime(RuntimeException ex) {
+        logger.error("⚠️ Error inesperado en la aplicación", ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("⚠️ Error interno en el servidor: " + ex.getMessage());
+    }
+}
+    </code></pre>
+
+    <div class="footer">📘 Documentación generada automáticamente</div>
+  </div>
+</body>
+</html>

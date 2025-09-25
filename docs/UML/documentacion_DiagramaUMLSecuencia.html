@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Secuencia con Flujos de Excepción</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 1250px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 800px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Secuencia UML – Manejo de Excepciones en Consulta de Cliente</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe, mediante un <b>diagrama de secuencia UML detallado</b>, los flujos principales y alternativos (excepciones) durante la consulta de cliente en el sistema. Se modelan los escenarios de éxito, cliente no encontrado, error de validación y error inesperado, mostrando cómo circulan los mensajes y excepciones entre los distintos componentes.
+    </p>
+
+    <img src="cid:image13" alt="Diagrama de secuencia UML detallado con flujos de excepción para consulta de cliente" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Secuencia (Sequence Diagram, con excepciones y ramificaciones)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El diagrama incluye líneas de vida para todos los componentes relevantes, modelando fragmentos de control y manejo de excepciones conforme a UML 2.5.1.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Flujo principal: Cliente encontrado</b>
+        <ul>
+          <li>El usuario solicita un cliente utilizando <code>GET /clientes/{tipoDocumento}/{numeroDocumento}</code>.</li>
+          <li>La petición fluye por <b>ClienteController</b>, <b>ClienteService</b>, <b>ClienteRepository</b> hasta <b>ClienteRepositoryImpl</b>, que ejecuta un procedimiento almacenado en <b>DB SQL Server</b>.</li>
+          <li>Si el cliente existe, se retorna el objeto y una respuesta HTTP 200 OK.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Flujo alternativo: Cliente no encontrado</b>
+        <ul>
+          <li>Si el cliente no existe, el ResultSet está vacío y se retorna <code>Optional.empty</code>.</li>
+          <li>Se lanza <code>NoSuchElementException</code> y el <b>GlobalExceptionHandler</b> retorna HTTP 404 Not Found.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Flujo alternativo: Error de validación</b>
+        <ul>
+          <li>Si el número de documento es inválido, se lanza <code>IllegalArgumentException</code> y el handler retorna HTTP 400 Bad Request.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Flujo alternativo: Error inesperado</b>
+        <ul>
+          <li>Si ocurre un error inesperado (por ejemplo, error en la base de datos), se lanza <code>RuntimeException</code> y se retorna HTTP 500 Internal Server Error.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Secuencia con Excepciones</h2>
+    <div class="important">
+      Este diagrama es relevante porque:
+      <ul>
+        <li>Permite visualizar flujos de éxito y error en detalle, incluyendo excepciones y su manejo.</li>
+        <li>Facilita la comprensión de la robustez y resiliencia del sistema ante distintas condiciones.</li>
+        <li>Documenta claramente cómo los errores son propagados y gestionados, útil para desarrollo y QA.</li>
+        <li>Establece el contrato de respuestas esperadas para distintos escenarios.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo profesional y claro:
+      <ul>
+        <li>Colores suaves, bloques diferenciados, tipografía moderna.</li>
+        <li>El diagrama está centrado y segmentado por escenarios para fácil navegación.</li>
+        <li>Se destacan actores, componentes, ramificaciones y excepciones.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLSecuencia.png" width="2270" height="1499"></div>
+</div>
+</body>
+</html>

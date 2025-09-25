@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación - ClienteRepositoryImpl</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 ClienteRepositoryImpl</h1>
+    <p><strong>Paquete:</strong> <code>com.clinicos.backend.api.rest.infrastructure.repository</code></p>
+
+    <div class="note">
+      <p>🔹 <strong>Descripción:</strong><br>
+      Implementación de <code>ClienteRepository</code> usando <b>Spring JdbcTemplate</b>.  
+      Actúa como <b>adaptador de infraestructura</b> en Arquitectura Hexagonal para la persistencia de clientes.</p>
+    </div>
+
+    <h2>🏛️ Arquitectura Hexagonal</h2>
+    <ul>
+      <li>📌 El dominio (<code>ClienteService</code>) depende de la abstracción <code>ClienteRepository</code>.</li>
+      <li>📌 Esta clase implementa la infraestructura concreta (DB SQL Server).</li>
+    </ul>
+
+    <h2>✨ Principios SOLID</h2>
+    <ul>
+      <li>🔹 <b>SRP (Single Responsibility):</b> cada método tiene una única responsabilidad.</li>
+      <li>🔹 <b>OCP (Open/Closed):</b> extensible sin modificar lógica de negocio.</li>
+      <li>🔹 <b>LSP (Liskov Substitution):</b> cumple con la interfaz <code>ClienteRepository</code>.</li>
+      <li>🔹 <b>ISP (Interface Segregation):</b> implementa solo métodos necesarios.</li>
+      <li>🔹 <b>DIP (Dependency Inversion):</b> la aplicación depende de la abstracción, no de la implementación concreta.</li>
+    </ul>
+
+    <h2>📝 Logging</h2>
+    <p>Se usa <b>SLF4J</b> para registrar operaciones de consulta, inserción, advertencias y errores.</p>
+
+    <h2>👩‍💻 Autor</h2>
+    <p><strong>Aura Cristina Garzón Rodríguez</strong> — <em>23 Sep 2025</em></p>
+
+    <h2>🛠️ Métodos documentados</h2>
+
+    <h3>🔹 obtenerCliente</h3>
+    <div class="important">
+      <p>Obtiene un cliente por tipo y número de documento.</p>
+      <ul>
+        <li>🔸 Ejecuta <code>sp_ObtenerCliente</code> en DB.</li>
+        <li>🔸 Devuelve <code>Optional&lt;Cliente&gt;</code>.</li>
+        <li>🔸 Logs: consulta, éxito, no encontrado, error.</li>
+        <li>🔸 Parámetros:
+          <ul>
+            <li><code>tipoDocumento</code>: tipo de documento (CC, CE, Pasaporte, etc.).</li>
+            <li><code>numeroDocumento</code>: número de documento &gt; 0.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h3>🔹 insertarCliente</h3>
+    <div class="important">
+      <p>Inserta un nuevo cliente en la base de datos.</p>
+      <ul>
+        <li>🔸 Ejecuta <code>INSERT INTO Clientes</code>.</li>
+        <li>🔸 Logs: inicio, éxito, error.</li>
+        <li>🔸 Parámetros:
+          <ul>
+            <li><code>cliente</code>: objeto <code>Cliente</code> no nulo.</li>
+          </ul>
+        </li>
+        <li>🔸 Lanza excepción en caso de error (para manejo global).</li>
+      </ul>
+    </div>
+
+    <h2>💻 Código Fuente</h2>
+    <pre><code>
+@Repository
+public class ClienteRepositoryImpl implements ClienteRepository {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClienteRepositoryImpl.class);
+    private final JdbcTemplate jdbcTemplate;
+
+    public ClienteRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    private final RowMapper&lt;Cliente&gt; clienteRowMapper = (rs, rowNum) -&gt; new Cliente(
+            rs.getString("TipoDocumento"),
+            rs.getLong("NumeroDocumento"),
+            rs.getString("PrimerNombre"),
+            rs.getString("SegundoNombre"),
+            rs.getString("PrimerApellido"),
+            rs.getString("SegundoApellido"),
+            rs.getString("Telefono"),
+            rs.getString("Direccion"),
+            rs.getString("CiudadResidencia")
+    );
+
+    @Override
+    public Optional&lt;Cliente&gt; obtenerCliente(String tipoDocumento, long numeroDocumento) {
+        String sql = "EXEC sp_ObtenerCliente @TipoDocumento = ?, @NumeroDocumento = ?";
+        try {
+            logger.info("🔍 Consultando cliente con tipoDocumento={} y numeroDocumento={}", tipoDocumento, numeroDocumento);
+            Cliente cliente = jdbcTemplate.queryForObject(sql, clienteRowMapper, tipoDocumento, numeroDocumento);
+            if (cliente != null) {
+                logger.info("✅ Cliente encontrado: {}", cliente);
+                return Optional.of(cliente);
+            } else {
+                logger.warn("❌ Cliente no encontrado con tipoDocumento={} y numeroDocumento={}", tipoDocumento, numeroDocumento);
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            logger.error("💥 Error al consultar cliente con tipoDocumento={} y numeroDocumento={}", tipoDocumento, numeroDocumento, e);
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public void insertarCliente(Cliente cliente) {
+        String sql = "INSERT INTO Clientes (TipoDocumento, NumeroDocumento, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Telefono, Direccion, CiudadResidencia) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            logger.info("📝 Insertando cliente: {}", cliente);
+            jdbcTemplate.update(
+                    sql,
+                    cliente.getTipoDocumento(),
+                    cliente.getNumeroDocumento(),
+                    cliente.getPrimerNombre(),
+                    cliente.getSegundoNombre(),
+                    cliente.getPrimerApellido(),
+                    cliente.getSegundoApellido(),
+                    cliente.getTelefono(),
+                    cliente.getDireccion(),
+                    cliente.getCiudadResidencia()
+            );
+            logger.info("✅ Cliente insertado correctamente: {}", cliente);
+        } catch (Exception e) {
+            logger.error("💥 Error al insertar cliente: {}", cliente, e);
+            throw e;
+        }
+    }
+}
+    </code></pre>
+
+    <div class="footer">📘 Documentación generada automáticamente</div>
+  </div>
+</body>
+</html>

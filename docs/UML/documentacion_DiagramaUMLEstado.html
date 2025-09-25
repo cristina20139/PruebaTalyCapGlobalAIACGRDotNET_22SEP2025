@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Estados de Cliente</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Estados UML – Ciclo de Vida de un Cliente</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe el ciclo de vida de un cliente en el sistema, modelado a través de un <b>diagrama de estados UML</b>. El diagrama muestra los posibles estados que puede tener un cliente y las transiciones entre estos estados, así como los eventos o acciones que disparan cada transición.
+    </p>
+
+    <img src="cid:image8" alt="Diagrama de estados UML del ciclo de vida de un cliente" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Estados (State Machine Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> El estándar UML 2.5.1 es ampliamente utilizado para modelar el ciclo de vida y los cambios de estado de entidades importantes en un sistema, como los clientes.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Estado inicial (<code>Nuevo</code>):</b> El cliente inicia en estado "Nuevo" tras su creación.
+      </li>
+      <li>
+        <b>Registrado:</b> Al ejecutar <code>registrarCliente()</code>, el cliente pasa a estado "Registrado".
+      </li>
+      <li>
+        <b>Activo:</b> Si los datos del cliente son validados exitosamente (<code>validarDatos()</code> o <code>activarCliente()</code>), el cliente pasa a "Activo".
+      </li>
+      <li>
+        <b>Suspendido:</b> Si se detecta un problema (<code>detectarProblema()</code>) o se suspende manualmente (<code>suspenderCliente()</code>), pasa a "Suspendido".
+      </li>
+      <li>
+        <b>Reactivación:</b> Tras resolver el problema (<code>resolverProblema()</code>) o reactivar el cliente (<code>reactivarCliente()</code>), vuelve a "Activo".
+      </li>
+      <li>
+        <b>Eliminado:</b> Desde "Activo" o "Suspendido", si se ejecuta <code>eliminarCliente()</code>, el cliente pasa a "Eliminado", estado final en el ciclo de vida.
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Estados</h2>
+    <div class="important">
+      El diagrama de estados UML es adecuado porque:
+      <ul>
+        <li>Permite visualizar claramente las posibles situaciones (estados) de una entidad y sus transiciones.</li>
+        <li>Facilita la identificación de escenarios de negocio y reglas asociadas a cada estado.</li>
+        <li>Ayuda a prevenir errores lógicos en la implementación del ciclo de vida de los clientes.</li>
+        <li>Es un estándar que facilita la comunicación entre desarrolladores, QA y analistas de negocio.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo claro y profesional:
+      <ul>
+        <li>Colores suaves, bloques diferenciados y tipografía moderna para fácil lectura.</li>
+        <li>El diagrama está centrado y claramente segmentado en estados y transiciones.</li>
+        <li>Las acciones/condiciones de transición están nombradas para máxima claridad.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLEstado.png" width="730" height="733"></div>
+</div>
+</body>
+</html>

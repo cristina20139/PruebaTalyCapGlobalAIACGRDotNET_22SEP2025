@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javadoc ClienteService</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fafbfc;
+      color: #23272f;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 24px 32px;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 24px; }
+    ul { margin-left: 20px; }
+    .footer {
+      text-align: right;
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Javadoc de la clase <code>ClienteService</code></h1>
+
+    <h2>Método: <code>obtenerCliente</code></h2>
+    <p>Obtiene un cliente por su tipo y número de documento.</p>
+    <h3>Principios aplicados</h3>
+    <ul>
+      <li><b>Single Responsibility Principle:</b> la función se enfoca únicamente en obtener un cliente y registrar los eventos de log.</li>
+      <li><b>Open/Closed Principle:</b> puede extenderse con lógica adicional de filtrado o validación sin modificar el método principal.</li>
+      <li><b>Liskov Substitution Principle:</b> retorna un <code>Optional&lt;Cliente&gt;</code>, manteniendo consistencia con la interfaz <code>ClienteRepository</code>.</li>
+      <li><b>Interface Segregation Principle:</b> la dependencia <code>ClienteRepository</code> define solo los métodos necesarios para esta operación.</li>
+      <li><b>Dependency Inversion Principle:</b> el método depende de abstracciones (repositorio) y no de implementaciones concretas.</li>
+    </ul>
+    <h3>Arquitectura Hexagonal</h3>
+    <ul>
+      <li>El servicio (capa de aplicación) interactúa con el puerto <code>ClienteRepository</code>.</li>
+      <li>La lógica de negocio permanece desacoplada del controlador y del repositorio concreto.</li>
+    </ul>
+    <h3>Manejo de logs</h3>
+    <ul>
+      <li><b>INFO:</b> cuando se inicia la búsqueda y cuando se encuentra un cliente.</li>
+      <li><b>WARN:</b> cuando no se encuentra el cliente.</li>
+      <li><b>ERROR:</b> captura de excepciones inesperadas con re-lanzamiento para el <code>GlobalExceptionHandler</code>.</li>
+    </ul>
+    <h3>Parámetros</h3>
+    <ul>
+      <li><b>tipoDocumento:</b> Tipo de documento del cliente (ej. CC, CE, Pasaporte).</li>
+      <li><b>numeroDocumento:</b> Número de documento del cliente.</li>
+    </ul>
+    <h3>Retorno</h3>
+    <p>Un <code>Optional&lt;Cliente&gt;</code> que contiene el cliente si se encuentra; <code>Optional.empty()</code> si no existe.</p>
+    <h3>Excepciones</h3>
+    <p><code>RuntimeException</code> si ocurre un error inesperado durante la obtención del cliente.</p>
+    <div class="footer">
+      <p><b>Autor:</b> Aura Cristina Garzón Rodríguez<br/>
+      <b>Desde:</b> 23 Sep 2025</p>
+    </div>
+
+    <h2>Método: <code>crearCliente</code></h2>
+    <p>Crea un nuevo cliente en el sistema.</p>
+    <h3>Principios aplicados</h3>
+    <ul>
+      <li><b>Single Responsibility Principle:</b> se encarga únicamente de la creación de clientes y registro de logs.</li>
+      <li><b>Open/Closed Principle:</b> se puede extender con lógica adicional (validaciones, auditoría) sin modificar el método base.</li>
+      <li><b>Liskov Substitution Principle:</b> cumple con la interfaz <code>ClienteRepository</code> y puede ser sustituido por cualquier implementación de repositorio.</li>
+      <li><b>Interface Segregation Principle:</b> depende solo de los métodos necesarios de <code>ClienteRepository</code>.</li>
+      <li><b>Dependency Inversion Principle:</b> depende de abstracciones (repositorio) en lugar de implementaciones concretas.</li>
+    </ul>
+    <h3>Arquitectura Hexagonal</h3>
+    <ul>
+      <li>La capa de aplicación (servicio) interactúa con el puerto <code>ClienteRepository</code>.</li>
+      <li>La lógica de negocio está desacoplada de la infraestructura y controladores.</li>
+    </ul>
+    <h3>Manejo de logs</h3>
+    <ul>
+      <li><b>INFO:</b> al iniciar la creación y al completar correctamente la operación.</li>
+      <li><b>ERROR:</b> captura de cualquier excepción durante la creación del cliente, re-lanzada para manejo global.</li>
+    </ul>
+    <h3>Parámetros</h3>
+    <ul>
+      <li><b>cliente:</b> El objeto <code>Cliente</code> a crear. No puede ser <code>null</code>.</li>
+    </ul>
+    <h3>Excepciones</h3>
+    <p><code>RuntimeException</code> si ocurre un error inesperado durante la creación del cliente.</p>
+    <div class="footer">
+      <p><b>Autor:</b> Aura Cristina Garzón Rodríguez<br/>
+      <b>Desde:</b> 23 Sep 2025</p>
+    </div>
+  </div>
+</body>
+</html>

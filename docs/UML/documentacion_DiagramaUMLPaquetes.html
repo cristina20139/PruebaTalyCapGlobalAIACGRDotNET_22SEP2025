@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Paquetes</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 1000px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Paquetes UML – Sistema Gestión de Clientes</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe la organización modular del <b>Sistema de Gestión de Clientes</b> mediante un <b>diagrama UML de paquetes</b>. Se visualizan los principales paquetes lógicos (Infraestructura, Utilidades, Aplicación, Dominio), los componentes que contienen y las relaciones de uso e implementación entre ellos.
+    </p>
+
+    <img src="cid:image12" alt="Diagrama de paquetes UML del sistema gestión de clientes" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Paquetes (Package Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> UML 2.5.1 es el estándar recomendado para modelar la estructura de alto nivel de aplicaciones Java/Spring Boot, mostrando dependencias, agrupaciones y responsabilidades.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>Infraestructura:</b>
+        <ul>
+          <li>Incluye <b>ClienteRepositoryImpl</b>, <b>ClienteController</b> y <b>GlobalExceptionHandler</b>.</li>
+          <li>Interactúa e implementa interfaces definidas en <b>Dominio</b> y <b>Aplicación</b>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Utilidades:</b>
+        <ul>
+          <li>Contiene <b>ClienteGenerator</b>, que es usado por <b>Aplicación</b> y <b>Infraestructura</b>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Aplicación:</b>
+        <ul>
+          <li>Contiene <b>ClienteService</b>, el servicio orquestador de la lógica de negocio.</li>
+          <li>Utiliza componentes de <b>Dominio</b> y <b>Utilidades</b>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Dominio:</b>
+        <ul>
+          <li>Define <b>Cliente</b> (entidad) y <b>ClienteRepository</b> (interfaz de persistencia).</li>
+          <li>Es utilizado por las capas superiores, pero no depende de ellas.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Relaciones:</b>
+        <ul>
+          <li>Las flechas indican uso, implementación o interacción entre paquetes.</li>
+          <li>La arquitectura fomenta el bajo acoplamiento y la alta cohesión.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Paquetes</h2>
+    <div class="important">
+      El diagrama de paquetes UML es fundamental porque:
+      <ul>
+        <li>Expone la organización modular y las dependencias a nivel de arquitectura.</li>
+        <li>Facilita la comunicación entre equipos de desarrollo, arquitectura y QA.</li>
+        <li>Ayuda a identificar responsabilidades y a mantener un diseño limpio y escalable.</li>
+        <li>Permite visualizar cómo las diferentes capas interactúan y se desacoplan.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo profesional y claro:
+      <ul>
+        <li>Colores suaves, bloques diferenciados y tipografía moderna.</li>
+        <li>El diagrama está centrado y segmentado por paquetes lógicos.</li>
+        <li>Las relaciones y dependencias están etiquetadas para máxima claridad.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLPaquetes.png" width="938" height="481"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía de Diagramas UML - Arquitectura Hexagonal</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    ul.diagram-list { list-style: none; padding: 0; }
+    ul.diagram-list li { background: #f3f3f7; margin: 18px 0; padding: 18px 20px; border-radius: 7px; box-shadow: 0 2px 8px #0001; }
+    .diagram-title { font-weight: bold; color: #2d4a80; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Guía de Diagramas UML<br>Sistema con Arquitectura Hexagonal</h1>
+    <p>Esta guía describe el propósito y alcance de los principales diagramas UML generados para documentar y comunicar la arquitectura hexagonal de una aplicación empresarial. Cada diagrama aporta una visión complementaria y necesaria para entender la organización, responsabilidades y dinámicas del sistema.</p>
+    <ul class="diagram-list">
+      <li>
+        <span class="diagram-title"><a href="DiagramaUMLActividad.png">documentacion_DiagramaUMLActividad</a></span><br>
+        <b>Alcance:</b> Muestra el flujo lógico de actividades y decisiones en un proceso o caso de uso.<br>
+        <b>Razón de ser:</b> Permite visualizar los pasos secuenciales y ramificaciones, ayudando a modelar la lógica de negocio.<br>
+        <b>Papel:</b> En la arquitectura hexagonal, ayuda a entender cómo los flujos de negocio cruzan los límites de la aplicación a través de puertos y servicios.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLCasoUso.html" target="_blank">documentacion_DiagramaUMLCasoUso</a></span><br>
+        <b>Alcance:</b> Describe los diferentes casos de uso del sistema y los actores involucrados.<br>
+        <b>Razón de ser:</b> Identifica las interacciones externas y los objetivos del sistema.<br>
+        <b>Papel:</b> Fundamenta los servicios expuestos por la capa de aplicación y la interacción con adaptadores externos en la arquitectura hexagonal.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="DiagramaUMLClases.png" target="_blank">documentacion_DiagramaUMLClases</a></span><br>
+        <b>Alcance:</b> Representa la estructura de clases, atributos, métodos y relaciones.<br>
+        <b>Razón de ser:</b> Expone la organización interna, contratos, entidades y dependencias.<br>
+        <b>Papel:</b> Define el núcleo de dominio y los contratos entre capas, esenciales para el desacoplamiento en hexagonal.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLColaboracion.html" target="_blank">documentacion_DiagramaUMLColaboracion</a></span><br>
+        <b>Alcance:</b> Modela cómo interactúan los objetos para realizar una tarea.<br>
+        <b>Razón de ser:</b> Permite analizar la cooperación entre componentes.<br>
+        <b>Papel:</b> Ilustra la colaboración entre puertos, adaptadores y servicios, clave en la arquitectura hexagonal.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLComponentes.html" target="_blank">documentacion_DiagramaUMLComponentes</a></span><br>
+        <b>Alcance:</b> Muestra la organización modular del sistema y sus dependencias.<br>
+        <b>Razón de ser:</b> Explicita los componentes, interfaces y conexiones.<br>
+        <b>Papel:</b> Refleja la separación entre núcleo, puertos y adaptadores, principio fundamental de la arquitectura hexagonal.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLDespliegue.html" target="_blank">documentacion_DiagramaUMLDespliegue</a></span><br>
+        <b>Alcance:</b> Describe la infraestructura física/lógica y la ubicación de los componentes.<br>
+        <b>Razón de ser:</b> Muestra cómo el software se distribuye y comunica en servidores y nodos.<br>
+        <b>Papel:</b> Asegura que la segmentación hexagonal se respete en el despliegue real, identificando puntos de integración.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLEstado.html" target="_blank">documentacion_DiagramaUMLEstado</a></span><br>
+        <b>Alcance:</b> Modela los estados y transiciones del ciclo de vida de una entidad.<br>
+        <b>Razón de ser:</b> Define comportamientos, reglas y restricciones.<br>
+        <b>Papel:</b> Esencial para entidades de dominio, asegurando integridad y lógica central en hexagonal.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLEstructuraCompuesta.html" target="_blank">documentacion_DiagramaUMLEstructuraCompuesta</a></span><br>
+        <b>Alcance:</b> Detalla la composición interna de los componentes y sus partes.<br>
+        <b>Razón de ser:</b> Permite analizar ensamblaje y colaboración detallada.<br>
+        <b>Papel:</b> Visualiza la implementación de adaptadores y la integración con el dominio, reforzando la separación de responsabilidades.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLInteraccionalGeneral.html" target="_blank">documentacion_DiagramaUMLInteraccionGeneral</a></span><br>
+        <b>Alcance:</b> Presenta la interacción global entre los principales bloques del sistema.<br>
+        <b>Razón de ser:</b> Permite comprender la orquestación y el flujo de información.<br>
+        <b>Papel:</b> Sitúa cada capa hexagonal y sus límites, conectando los distintos tipos de diagramas.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLObjetos.html" target="_blank">documentacion_DiagramaUMLObjetos</a></span><br>
+        <b>Alcance:</b> Muestra instancias concretas y relaciones en tiempo de ejecución.<br>
+        <b>Razón de ser:</b> Ejemplifica cómo se materializan las relaciones del diseño en casos reales.<br>
+        <b>Papel:</b> Ayuda a validar el diseño hexagonal mostrando cómo fluyen y se concretan las dependencias.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLPaquetes.html" target="_blank">documentacion_DiagramaUMLPaquetes</a></span><br>
+        <b>Alcance:</b> Organiza el sistema en paquetes lógicos y muestra dependencias entre ellos.<br>
+        <b>Razón de ser:</b> Facilita la modularización y el control de dependencias.<br>
+        <b>Papel:</b> Refuerza los límites hexagonales y promueve una arquitectura limpia y desacoplada.
+      </li>
+      <li>
+        <span class="diagram-title"><a href="documentacion_DiagramaUMLSecuencia.html" target="_blank">documentacion_DiagramaUMLSecuencia</a></span><br>
+        <b>Alcance:</b> Representa el flujo de mensajes entre objetos en un escenario concreto.<br>
+        <b>Razón de ser:</b> Permite analizar el orden y la lógica de las interacciones.<br>
+        <b>Papel:</b> Demuestra cómo los adaptadores y el núcleo de aplicación colaboran a través de puertos, eje central de la arquitectura hexagonal.
+      </li>
+    </ul>
+    <div class="footer">
+      Documentación generada por Copilot &mdash; Septiembre 2025
+    </div>
+  </div>
+</body>
+</html>

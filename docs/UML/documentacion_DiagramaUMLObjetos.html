@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación Detallada – Diagrama UML de Objetos</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+    img.diagram { display: block; margin: 32px auto; max-width: 100%; border: 1px solid #eee; border-radius: 7px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Documentación Detallada del Diagrama de Objetos UML – Escenario Consulta de Cliente</h1>
+    
+    <h2>1. Descripción General</h2>
+    <p>
+      Este documento describe cómo se relacionan los objetos principales en tiempo de ejecución durante el proceso de consulta de cliente, usando un <b>diagrama de objetos UML</b>. El diagrama muestra referencias, relaciones y valores de atributos de un ejemplo real de consulta.
+    </p>
+
+    <img src="cid:image11" alt="Diagrama de objetos UML para consulta de cliente" class="diagram">
+
+    <h2>2. Versión y Especificación UML</h2>
+    <ul>
+      <li><strong>Versión de UML:</strong> 2.5.1</li>
+      <li><strong>Tipo de diagrama:</strong> Diagrama de Objetos (Object Diagram)</li>
+      <li><strong>Año de creación:</strong> 2025</li>
+    </ul>
+    <div class="note">
+      <strong>Nota:</strong> UML 2.5.1 permite modelar instancias concretas y relaciones entre objetos en tiempo de ejecución, ilustrando cómo se materializan las asociaciones y dependencias en un caso concreto.
+    </div>
+
+    <h2>3. Explicación del Diagrama</h2>
+    <ol>
+      <li>
+        <b>ClienteController</b> contiene una referencia (<code>clienteService = service</code>) al servicio de clientes.
+      </li>
+      <li>
+        <b>ClienteService</b> contiene una referencia (<code>clienteRepository = repository</code>) al repositorio de clientes.
+      </li>
+      <li>
+        <b>ClienteRepositoryImpl</b> es la implementación concreta del repositorio consultado.
+      </li>
+      <li>
+        En una consulta, <b>ClienteService</b> utiliza <b>ClienteRepositoryImpl</b> y retorna un objeto <b>Cliente</b> al controlador.
+      </li>
+      <li>
+        El objeto <b>Cliente</b> mostrado es una instancia real con valores de atributos, ejemplificando el resultado devuelto al usuario:
+        <ul>
+          <li><code>tipoDocumento: 'C'</code></li>
+          <li><code>numeroDocumento: 12345678</code></li>
+          <li><code>primerNombre: 'Sofía'</code></li>
+          <li><code>segundoNombre: 'Lucía'</code></li>
+          <li><code>primerApellido: 'Gómez'</code></li>
+          <li><code>segundoApellido: 'Martínez'</code></li>
+          <li><code>telefono: '300-1234567'</code></li>
+          <li><code>direccion: 'Calle 45 # 12-10'</code></li>
+          <li><code>ciudadResidencia: 'Bogotá'</code></li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>4. Justificación del Uso de Diagrama UML de Objetos</h2>
+    <div class="important">
+      El diagrama de objetos UML es útil porque:
+      <ul>
+        <li>Permite visualizar instancias reales y relaciones de objetos en un momento específico de la ejecución.</li>
+        <li>Facilita la comprensión de la estructura en tiempo de ejecución y los valores concretos retornados al usuario.</li>
+        <li>Es ideal para validar el diseño y la implementación, así como para documentación y pruebas.</li>
+        <li>Complementa otros diagramas estructurales mostrando ejemplos concretos.</li>
+      </ul>
+    </div>
+
+    <h2>5. Estilo Visual</h2>
+    <div class="example">
+      El documento mantiene un estilo profesional, uniforme y claro:
+      <ul>
+        <li>Colores suaves, bloques y tipografía moderna.</li>
+        <li>El diagrama está centrado, con relaciones y valores de atributos claramente visibles.</li>
+        <li>Los nombres de objetos y relaciones están alineados con la nomenclatura de la aplicación real.</li>
+      </ul>
+    </div>
+
+    <div class="footer"><img src="DiagramaUMLObjetos.png" width="445" height="454"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación de la clase Cliente</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+    .container { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+    h1 { color: #1565c0; }
+    h2 { color: #2e7d32; margin-top: 32px; }
+    h3 { color: #7b1fa2; margin-top: 24px; }
+    ul, li { margin-bottom: 8px; }
+    code, pre { background: #f3f3f7; padding: 3px 7px; border-radius: 4px; font-size: 1em; color: #222; }
+    .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+    .example { background: #fce4ec; border-left: 4px solid #c2185b; padding: 12px 18px; margin: 18px 0; border-radius: 5px; font-family: monospace; }
+    .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+    @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Documentación de la clase <code>Cliente</code></h1>
+
+    <h2>📌 Rol en la Arquitectura Hexagonal</h2>
+    <p>
+      La clase <code>Cliente</code> pertenece a la <b>capa de dominio</b>.  
+      👉 Aquí es donde se definen las entidades puras que representan el <b>modelo de negocio</b>.  
+    </p>
+    <ul>
+      <li>🏗️ <b>Núcleo del dominio:</b> No depende de frameworks ni de la infraestructura.</li>
+      <li>🧩 <b>Entidad independiente:</b> Puede ser usada tanto por la capa de aplicación (servicios) como por la infraestructura (repositorios, controladores).</li>
+      <li>🔄 <b>Puerto y adaptadores:</b> Se comunica indirectamente con la base de datos o APIs a través de interfaces (repositorios), manteniendo el principio de inversión de dependencias.</li>
+    </ul>
+
+    <h2>🚀 Uso de Spring Boot en estos fuentes</h2>
+    <p>
+      Aunque la clase <code>Cliente</code> no usa directamente Spring Boot, dentro del proyecto cumple un papel clave:  
+    </p>
+    <ul>
+      <li>📦 Spring Boot facilita la inyección de dependencias para repositorios y servicios que trabajan con <code>Cliente</code>.</li>
+      <li>🌐 Los controladores REST de Spring Boot exponen APIs que reciben/envían objetos <code>Cliente</code> en formato JSON.</li>
+      <li>🗄️ Spring Data (si se usa) permite mapear automáticamente la entidad <code>Cliente</code> a tablas en la base de datos.</li>
+    </ul>
+    <div class="note">👉 En conclusión, <b>Spring Boot actúa como infraestructura</b>, pero <code>Cliente</code> sigue siendo puro dominio.</div>
+
+    <h2>📖 Javadoc en formato legible</h2>
+    <div class="important">
+      <p><b>Descripción:</b> Representa un cliente en el sistema.  
+      Pertenece a la capa de dominio y define la entidad Cliente con sus atributos y métodos de acceso (getters/setters).</p>
+    </div>
+
+    <h3>🌟 Principios aplicados</h3>
+    <ul>
+      <li>✅ <b>SRP (Single Responsibility Principle) :</b> la clase solo representa la información de un cliente.</li>
+      <li>🔒 <b>Encapsulamiento:</b> atributos privados con getters y setters.</li>
+      <li>🧹 <b>Clean Code:</b> nombres claros y consistentes.</li>
+      <li>🏛️ <b>Hexagonal:</b> no depende de infraestructura ni frameworks.</li>
+    </ul>
+
+    <h3>🛠️ Constructor</h3>
+    <div class="example">
+      Cliente(String tipoDocumento, long numeroDocumento, String primerNombre, String segundoNombre,  
+      String primerApellido, String segundoApellido, String telefono, String direccion, String ciudadResidencia)
+    </div>
+    <p>📌 Permite crear un cliente con todos sus atributos inicializados.</p>
+
+    <h3>✍️ Autor</h3>
+    <p>👩‍💻 Aura Cristina Garzón Rodríguez</p>
+
+    <h3>📅 Desde</h3>
+    <p>23 Sep 2025</p>
+
+    <div class="footer">
+      📝 Documentación generada a partir del Javadoc original
+    </div>
+  </div>
+</body>
+</html>
